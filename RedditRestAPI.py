@@ -256,7 +256,17 @@ def fetch_collection(client):
 
     pprint(request)
 
+def create_collections(client):
 
+    url = base_url + '/api/v1/collections/create_collection'
+
+    body = client.RedditCollection.generate_body()
+
+    headers = get_auth_header(client)
+
+    request = requests.get(url,headers=headers,body=body)
+
+    pprint(request)
 
 
 
