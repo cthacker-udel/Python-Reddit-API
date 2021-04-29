@@ -256,7 +256,7 @@ def fetch_collection(client):
 
     pprint(request)
 
-def create_collections(client):
+def create_collection(client):
 
     url = base_url + '/api/v1/collections/create_collection'
 
