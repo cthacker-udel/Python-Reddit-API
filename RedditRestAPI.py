@@ -237,9 +237,26 @@ def add_post_to_collection(client):
 
     body = client.RedditCollection.generate_body()
 
-    request = requests.get(url,headers=get_auth_header(client),body=body)
+    headers = get_auth_header(client)
+
+    request = requests.get(url,headers=headers,body=body)
 
     pprint(request)
+
+
+def fetch_collection(client):
+
+    url = base_url + '/api/v1/collections/collection'
+
+    body = client.RedditCollection.generate_body()
+
+    headers = get_auth_header(client)
+
+    request = requests.get(url,headers=headers,body=body)
+
+    pprint(request)
+
+
 
 
 
