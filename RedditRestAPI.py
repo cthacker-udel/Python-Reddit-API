@@ -180,6 +180,17 @@ def edit_user_preference_settings(client):
     pprint(request)
 
 
+def get_user_trophies(client):
+
+    url = base_url + '/api/v1/me/trophies'
+
+    headers = get_auth_header(client)
+
+    request = requests.get(url,headers=headers)
+
+    pprint(request)
+
+
 
 
 
