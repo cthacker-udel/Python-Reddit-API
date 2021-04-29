@@ -211,6 +211,22 @@ def get_preference_settings_v1(client):
     pprint(request)
 
 
+#################################
+# Captcha Methods
+#################################
+
+
+def check_captcha(client):
+
+    url = base_url + "/api/needs_captcha"
+
+    headers = get_auth_header(client)
+
+    request = requests.get(url,headers=headers)
+
+    pprint(request)
+
+
 
 
 
