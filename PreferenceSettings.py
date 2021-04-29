@@ -84,6 +84,7 @@ class PreferenceSettings(RedditClient):
         self.top_karma_subreddits = None
         self.use_global_defaults = None
         self.video_autoplay = None
+        self.where = None
 
     def convert_patch_body(self):
         body = {}

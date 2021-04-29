@@ -190,6 +190,18 @@ def get_user_trophies(client):
 
     pprint(request)
 
+def get_preference_settings_where(client):
+
+    url = base_url = '/prefs/{}'.format(client.PreferenceSettings.where)
+
+    headers = get_auth_header(client)
+
+    request = requests.get(url,headers=headers)
+
+    pprint(request)
+
+
+
 
 
 
