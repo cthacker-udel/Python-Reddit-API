@@ -200,6 +200,17 @@ def get_preference_settings_where(client):
 
     pprint(request)
 
+def get_preference_settings_v1(client):
+
+    url = base_url + "/api/v1/me/{}".format(client.PreferenceSettings.where)
+
+    headers = get_auth_header(client)
+
+    request = requests.get(url,headers=headers)
+
+    pprint(request)
+
+
 
 
 
