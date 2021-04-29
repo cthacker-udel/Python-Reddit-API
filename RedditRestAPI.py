@@ -2,22 +2,29 @@ import requests
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import DriverManager as FirefoxDriverManager
-from webdriver_manager.manager import DriverManager
 from webdriver_manager.logger import log
-import uuid
 from pprint import pprint
-from splinter import Browser
 import time
-import base64
 
 from RedditClient import RedditClient
 
 base_auth_url = 'https://www.reddit.com/api/v1/authorize'
 
-base_url = 'https://www.reddit.com'
+#base_url = 'https://www.reddit.com'
+
+#base_url = 'https://ssl.reddit.com'
+
+base_url = 'https://oauth.reddit.com'
+
+def get_auth_header(client):
+
+    headers = {'Authorization': 'Bearer {}'.format(client.access_token),
+               'User-Agent': 'cthacker-udel Reddit API Python Wrapper'}
+
+    return headers
 
 
-def oauth_code(client):
+def implicit_grant_flow(client):
     try:
         br = webdriver.Firefox(FirefoxDriverManager().install())
     except Exception as e:
@@ -58,25 +65,25 @@ def oauth_code(client):
     password_box = br.find_element_by_id('loginPassword')
     password_box.send_keys(client.password)
 
-    time.sleep(1)
+    time.sleep(2)
 
     login_button = br.find_element_by_xpath('/html/body/div/main/div[1]/div/div[2]/form/fieldset[5]/button').click()
 
-    time.sleep(3)
+    time.sleep(4)
 
     log('Allowing Python-Wrapper Reddit API permission')
 
     allow_button = br.find_element_by_xpath('/html/body/div[3]/div/div[2]/form/div/input[1]').click()
 
-    time.sleep(2)
+    time.sleep(3)
 
     log('Acquiring code to generate token')
 
     curr_url = br.current_url
 
-    response = curr_url.split('=')
+    response = curr_url.split('&token_type')
 
-    client.set_access_token(response[1])
+    client.set_access_token(response[0].split("access_token=")[1])
 
     return response
 
@@ -101,6 +108,89 @@ def token_post_request(client):
 
 
 
+############################################
+#       Account Methods
+############################################
+
+
+def get_user_identitiy(client):
+
+    url = base_url + '/api/v1/me'
+
+    headers = get_auth_header(client)
+
+    #client_auth = requests.auth.HTTPBasicAuth(client.client_id, client.client_secret)
+
+    request = requests.get(url,headers=headers).json()
+
+    pprint(request)
+
+    print('\n\n')
+
+    return request
+
+
+def get_user_identity_features(client):
+
+    identity = get_user_identitiy(client)
+
+    return identity['features']
+
+def get_user_identity_attribute(client,attribute):
+
+    identity = get_user_identitiy(client)
+
+    return identity[attribute]
+
+
+
+
+def get_user_karma(client):
+
+    url = base_url + '/api/v1/me/karma'
+
+    headers = get_auth_header(client)
+
+    request = requests.get(url,headers=headers).json()
+
+    pprint(request)
+
+
+def get_user_preference_settings(client):
+
+    url = base_url_oauth = '/api/v1/me/prefs'
+
+    headers = get_auth_header(client)
+
+    request = requests.get(url,headers=headers).json()
+
+    pprint(request)
+
+
+def edit_user_preference_settings(client):
+
+    url = base_url + '/api/v1/me/prefs'
+
+    headers = get_auth_header(client)
+
+    body = client.PreferenceSettings.convert_patch_body()
+
+    request = requests.patch(url,json=body,headers=headers)
+
+    pprint(request)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -116,14 +206,28 @@ def token_post_request(client):
 if __name__ == '__main__':
 
     client = RedditClient()
-    client.set_redirect_uri('exampleredirect')
-    client.set_client_id('exampleclientid')
-    client.set_client_secret('exampleclientsecret')
-    client.set_username('exampleusername')
-    client.set_password('examplepassword')
     client.add_scope('identity')
     client.add_scope('edit')
-    oauth_code(client)
+    client.add_scope('flair')
+    client.add_scope('history')
+    client.add_scope('modconfig')
+    client.add_scope('modflair')
+    client.add_scope('modlog')
+    client.add_scope('modposts')
+    client.add_scope('modwiki')
+    client.add_scope('mysubreddits')
+    client.add_scope('privatemessages')
+    client.add_scope('read')
+    client.add_scope('report')
+    client.add_scope('save')
+    client.add_scope('submit')
+    client.add_scope('subscribe')
+    client.add_scope('vote')
+    client.add_scope('wikiedit')
+    client.add_scope('wikiread')
+    implicit_grant_flow(client)
+    get_user_identitiy(client)
+    get_user_karma(client)
     
     
 
