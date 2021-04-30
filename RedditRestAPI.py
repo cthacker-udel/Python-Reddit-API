@@ -253,7 +253,7 @@ def add_post_to_collection(client):
 
     headers = get_auth_header(client)
 
-    request = requests.get(url,headers=headers,body=body)
+    request = requests.post(url,headers=headers,data=body)
 
     pprint(request)
 
@@ -282,7 +282,7 @@ def create_collection(client):
 
     headers = get_auth_header(client)
 
-    request = requests.get(url,headers=headers,body=body)
+    request = requests.post(url,headers=headers,data=body)
 
     pprint(request)
 
@@ -297,7 +297,7 @@ def delete_collection(client):
 
     headers = get_auth_header(client)
 
-    request = requests.get(url,headers=headers,body=body)
+    request = requests.post(url,headers=headers,data=body)
 
     pprint(request)
 
@@ -311,7 +311,7 @@ def follow_collection(client):
 
     headers = get_auth_header(client)
 
-    request = requests.get(url,headers=headers,body=body)
+    request = requests.post(url,headers=headers,data=body)
 
     pprint(request)
 
@@ -325,7 +325,7 @@ def remove_post_in_collection(client):
 
     headers = get_auth_header(client)
 
-    request = requests.get(url,headers=headers,body=body)
+    request = requests.post(url,headers=headers,data=body)
 
     pprint(request)
 
@@ -340,7 +340,7 @@ def reorder_collection(client):
 
     headers = get_auth_header(client)
 
-    request = requests.get(url,headers=headers,body=body)
+    request = requests.post(url,headers=headers,data=body)
 
     pprint(request)
 
@@ -370,7 +370,7 @@ def update_collection_description(client):
     headers = get_auth_header(client)
 
 
-    request = requests.get(url,headers=headers,body=body)
+    request = requests.post(url,headers=headers,data=body)
 
     pprint(request)
 
@@ -384,7 +384,7 @@ def update_collection_display_layout(client):
 
     headers = get_auth_header(client)
 
-    request = requests.get(url,headers=headers,body=body)
+    request = requests.post(url,headers=headers,data=body)
 
     pprint(request)
 
@@ -398,7 +398,7 @@ def update_collection_title(client):
 
     headers = get_auth_header(client)
 
-    request = requests.get(url,headers=headers,body=body)
+    request = requests.post(url,headers=headers,data=body)
 
     pprint(request)
 
@@ -420,7 +420,7 @@ def add_emoji_to_subreddit(client):
 
     headers = get_auth_header(client)
 
-    request = requests.post(url,data=body,headers=headers)
+    request = requests.post(url,body=body,headers=headers)
 
     pprint(request)
 
