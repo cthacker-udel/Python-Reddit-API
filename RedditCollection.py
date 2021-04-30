@@ -13,6 +13,7 @@ class RedditCollection(RedditClient):
         self.title = None
         self.description = None
         self.follow = None
+        self.link_ids = []
 
     def generate_body(self):
         body = {}
@@ -34,6 +35,8 @@ class RedditCollection(RedditClient):
             body['title'] = self.title
         if self.follow != None:
             body['follow'] = self.follow
+        if len(self.link_ids) > 0:
+            body['link_ids'] = ','.join(self.link_ids)
         return body
 
 

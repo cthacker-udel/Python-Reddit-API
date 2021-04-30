@@ -306,6 +306,19 @@ def remove_post_in_collection(client):
     pprint(request)
 
 
+def reorder_collection(client):
+
+    url = base_url + '/api/v1/collections/reorder_collection'
+
+    body = client.RedditCollection.generate_body()
+
+    headers = get_auth_header(client)
+
+    request = requests.get(url,headers=headers,body=body)
+
+    pprint(request)
+
+
 
 
 
