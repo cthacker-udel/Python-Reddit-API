@@ -155,16 +155,20 @@ def get_user_karma(client):
 
     pprint(request)
 
+    return request.status_code == 200
+
 
 def get_user_preference_settings(client):
 
-    url = base_url_oauth = '/api/v1/me/prefs'
+    url = base_url + '/api/v1/me/prefs'
 
     headers = get_auth_header(client)
 
     request = requests.get(url,headers=headers).json()
 
     pprint(request)
+
+    return request.status_code == 200
 
 
 def edit_user_preference_settings(client):
@@ -179,6 +183,8 @@ def edit_user_preference_settings(client):
 
     pprint(request)
 
+    return request.status_code == 200
+
 
 def get_user_trophies(client):
 
@@ -190,6 +196,8 @@ def get_user_trophies(client):
 
     pprint(request)
 
+    return request.status_code == 200
+
 def get_preference_settings_where(client):
 
     url = base_url = '/prefs/{}'.format(client.PreferenceSettings.where)
@@ -200,6 +208,8 @@ def get_preference_settings_where(client):
 
     pprint(request)
 
+    return request.status_code == 200
+
 def get_preference_settings_v1(client):
 
     url = base_url + "/api/v1/me/{}".format(client.PreferenceSettings.where)
@@ -209,6 +219,8 @@ def get_preference_settings_v1(client):
     request = requests.get(url,headers=headers)
 
     pprint(request)
+
+    return request.status_code == 200
 
 
 #################################
@@ -225,6 +237,8 @@ def check_captcha(client):
     request = requests.get(url,headers=headers)
 
     pprint(request)
+
+    return request.status_code == 200
 
 
 #################################
@@ -243,6 +257,8 @@ def add_post_to_collection(client):
 
     pprint(request)
 
+    return request.status_code == 200
+
 
 def fetch_collection(client):
 
@@ -256,6 +272,8 @@ def fetch_collection(client):
 
     pprint(request)
 
+    return request.status_code == 200
+
 def create_collection(client):
 
     url = base_url + '/api/v1/collections/create_collection'
@@ -267,6 +285,8 @@ def create_collection(client):
     request = requests.get(url,headers=headers,body=body)
 
     pprint(request)
+
+    return request.status_code == 200
 
 
 def delete_collection(client):
@@ -281,6 +301,8 @@ def delete_collection(client):
 
     pprint(request)
 
+    return request.status_code == 200
+
 def follow_collection(client):
 
     url = base_url + '/api/v1/collections/follow_collection'
@@ -293,6 +315,8 @@ def follow_collection(client):
 
     pprint(request)
 
+    return request.status_code == 200
+
 def remove_post_in_collection(client):
 
     url = base_url + '/api/v1/collections/remove_post_in_collection'
@@ -304,6 +328,8 @@ def remove_post_in_collection(client):
     request = requests.get(url,headers=headers,body=body)
 
     pprint(request)
+
+    return request.status_code == 200
 
 
 def reorder_collection(client):
@@ -318,6 +344,8 @@ def reorder_collection(client):
 
     pprint(request)
 
+    return request.status_code == 200
+
 
 def fetch_subreddit_collections(client):
 
@@ -330,6 +358,23 @@ def fetch_subreddit_collections(client):
     request = requests.get(url,headers=headers,body=body)
 
     pprint(request)
+
+    return request.status_code == 200
+
+def update_collection_description(client):
+
+    url = base_url + '/api/v1/collections/update_collection_description'
+
+    body = client.RedditCollection.generate_body()
+
+    headers = get_auth_header(client)
+
+
+    request = requests.get(url,headers=headers,body=body)
+
+    pprint(request)
+
+    return request.status_code == 200
 
 
 
