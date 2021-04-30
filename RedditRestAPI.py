@@ -425,6 +425,41 @@ def add_emoji_to_subreddit(client):
     pprint(request)
 
 
+def delete_subreddit_emoji(client):
+
+    url = base_url + '/api/v1/{}/emoji/{}'.format(client.RedditEmoji.subreddit_name,client.RedditEmoji.name)
+
+    headers = get_auth_header(client)
+
+    request = requests.delete(url,headers=headers)
+
+    pprint(request)
+
+
+def upload_emoji_asset(client):
+
+    url = base_url + '/api/v1/{}/emoji_asset_upload_s3.json'.format(client.RedditEmoji.subreddit_name)
+
+    headers = get_auth_header(client)
+
+    body = client.RedditEmoji.generate_body()
+
+    request = requests.post(url,headers=headers,data=body)
+
+    pprint(request)
+
+
+def set_emoji_size(client):
+
+    url = base_url + '/api/v1/{}/emoji_custom_size'.format(client.RedditEmoji.subreddit_name)
+
+    headers = get_auth_header(client)
+
+    body = client.RedditEmoji.generate_body()
+
+    request = requests.post(url,headers=headers,data=body)
+
+    pprint(request)
 
 
 

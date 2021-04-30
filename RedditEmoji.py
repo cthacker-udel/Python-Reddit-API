@@ -10,6 +10,10 @@ class RedditEmoji(RedditClient):
         self.s3_key = None
         self.user_flair_allowed = None
         self.subreddit_name = None
+        self.filepath = None
+        self.mimetype = None
+        self.height = None
+        self.width = None
 
 
     def generate_body(self):
@@ -24,6 +28,15 @@ class RedditEmoji(RedditClient):
             body['s3_key'] = self.s3_key
         if self.user_flair_allowed != None:
             body['user_flair_allowed'] = self.user_flair_allowed
+        if self.filepath != None:
+            body['filepath'] = self.filepath
+        if self.mimetype != None:
+            body['mimetype'] = self.mimetype
+        if self.height != None:
+            body['height'] = self.height
+        if self.width != None:
+            body['width'] = self.width
+        return body
 
     def erase_body(self):
 
@@ -32,3 +45,8 @@ class RedditEmoji(RedditClient):
         self.post_flair_allowed = None
         self.s3_key = None
         self.user_flair_allowed = None
+        self.subreddit_name = None
+        self.filepath = None
+        self.mimetype = None
+        self.height = None
+        self.width = None
