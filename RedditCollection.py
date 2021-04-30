@@ -12,6 +12,7 @@ class RedditCollection(RedditClient):
         self.sr_fullname = None
         self.title = None
         self.description = None
+        self.follow = None
 
     def generate_body(self):
         body = {}
@@ -31,6 +32,8 @@ class RedditCollection(RedditClient):
             body['sr_fullname'] = self.sr_fullname
         if self.title != None:
             body['title'] = self.title
+        if self.follow != None:
+            body['follow'] = self.follow
         return body
 
 
