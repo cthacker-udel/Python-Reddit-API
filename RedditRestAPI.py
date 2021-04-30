@@ -412,7 +412,17 @@ def update_collection_title(client):
 
 
 
+def add_emoji_to_subreddit(client):
 
+    url = base_url + '/api/v1/{}/emoji.json'.format(client.RedditEmoji.subreddit_name)
+
+    body = client.RedditEmoji.generate_body()
+
+    headers = get_auth_header(client)
+
+    request = requests.post(url,data=body,headers=headers)
+
+    pprint(request)
 
 
 

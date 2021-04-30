@@ -9,6 +9,7 @@ class RedditEmoji(RedditClient):
         self.post_flair_allowed = None
         self.s3_key = None
         self.user_flair_allowed = None
+        self.subreddit_name = None
 
 
     def generate_body(self):
