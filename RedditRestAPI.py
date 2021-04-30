@@ -319,6 +319,19 @@ def reorder_collection(client):
     pprint(request)
 
 
+def fetch_subreddit_collections(client):
+
+    url = base_url + '/api/v1/collections/subreddit_collections'
+
+    body = client.RedditCollection.generate_body()
+
+    headers = get_auth_header(client)
+
+    request = requests.get(url,headers=headers,body=body)
+
+    pprint(request)
+
+
 
 
 
