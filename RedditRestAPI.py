@@ -390,6 +390,25 @@ def update_collection_display_layout(client):
 
     return request.status_code == 200
 
+def update_collection_title(client):
+
+    url = base_url + '/api/v1/collections/update_collection_title'
+
+    body = client.RedditCollection.generate_body()
+
+    headers = get_auth_header(client)
+
+    request = requests.get(url,headers=headers,body=body)
+
+    pprint(request)
+
+    return request.status_code == 200
+
+
+
+#################################
+# EMOJI METHODS
+#################################
 
 
 
