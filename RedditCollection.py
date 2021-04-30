@@ -39,4 +39,17 @@ class RedditCollection(RedditClient):
             body['link_ids'] = ','.join(self.link_ids)
         return body
 
+    def erase_body(self):
+
+        self.collection_id = None
+        self.link_fullname = None
+        self.uh_x_modhash_header = None
+        self.include_links = None
+        self.display_layout = None
+        self.sr_fullname = None
+        self.title = None
+        self.description = None
+        self.follow = None
+        self.link_ids = None
+
 
