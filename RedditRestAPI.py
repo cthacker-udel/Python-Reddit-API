@@ -245,6 +245,7 @@ def check_captcha(client):
 # Collections Methods
 #################################
 
+
 def add_post_to_collection(client):
 
     url = base_url + '/api/v1/collections/add_post_to_collection'
@@ -458,6 +459,16 @@ def set_emoji_size(client):
     body = client.RedditEmoji.generate_body()
 
     request = requests.post(url,headers=headers,data=body)
+
+    pprint(request)
+
+def get_subreddit_emojis(client):
+
+    url = base_url + '/api/v1/{}/emojis/all'.format(client.RedditEmoji.subreddit_name)
+
+    headers = get_auth_header(client)
+
+    request = requests.get(url,headers=headers)
 
     pprint(request)
 
