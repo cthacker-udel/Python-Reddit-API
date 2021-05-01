@@ -542,6 +542,19 @@ def update_flair_template_order(client):
     pprint(request)
 
 
+def update_flair_config(client):
+
+    url = base_url + '[/r/{}]/api/flairconfig'.format(client.RedditFlair.subreddit_name)
+
+    headers = get_auth_header(client)
+
+    data = client.RedditFlair.generate_body()
+
+    request = requests.post(url,body=data,headers=headers)
+
+    pprint(request)
+
+
 
 
 

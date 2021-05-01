@@ -12,6 +12,11 @@ class RedditFlair(RedditClient):
         self.link = None
         self.user_name = None
         self.text = None
+        self.flair_enabled = None
+        self.flair_position = None
+        self.flair_self_assign_enabled = None
+        self.link_flair_position = None
+        self.link_flair_self_assign_enabled = None
 
 
     def generate_body(self):
@@ -30,6 +35,16 @@ class RedditFlair(RedditClient):
             body['name'] = self.user_name
         if self.text != None:
             body['text'] = self.text
+        if self.flair_enabled != None:
+            body['flair_enabled'] = self.flair_enabled
+        if self.flair_position != None:
+            body['flair_position'] = self.flair_position
+        if self.flair_self_assign_enabled != None:
+            body['flair_self_assign_enabled'] = self.link_flair_self_assign_enabled
+        if self.link_flair_position != None:
+            body['link_flair_position'] = self.link_flair_position
+        if self.link_flair_self_assign_enabled != None:
+            body['link_flair_self_assign_enabled'] = self.link_flair_self_assign_enabled
         return body
 
 
@@ -42,3 +57,8 @@ class RedditFlair(RedditClient):
         self.link = None
         self.user_name = None
         self.text = None
+        self.flair_enabled = None
+        self.flair_position = None
+        self.flair_self_assign_enabled = None
+        self.link_flair_position = None
+        self.link_flair_self_assign_enabled = None
