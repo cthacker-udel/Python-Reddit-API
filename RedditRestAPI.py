@@ -493,6 +493,20 @@ def clear_flair_templates(client):
 
 
 
+def delete_flair(client):
+
+    url = base_url + '[/r/{}]/api/deleteflair'
+
+    headers = get_auth_header(client)
+
+    data = client.RedditFlair.generate_body()
+
+    request = requests.delete(url,headers=headers,data=data)
+
+    pprint(request)
+
+
+
 
 
 
