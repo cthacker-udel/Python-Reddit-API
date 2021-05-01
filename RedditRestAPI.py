@@ -473,6 +473,25 @@ def get_subreddit_emojis(client):
     pprint(request)
 
 
+##############################
+## FLAIR METHODS
+##############################
+
+
+
+def clear_flair_templates(client):
+
+    url = base_url + '[/r/{}]/api/clearflairtemplates'.format(client.RedditFlair.subreddit_name)
+
+    headers = get_auth_header(client)
+
+    data = client.RedditFlair.generate_body()
+
+    request = requests.post(url,headers=headers,data=data)
+
+    pprint(request)
+
+
 
 
 
