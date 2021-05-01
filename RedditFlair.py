@@ -17,6 +17,7 @@ class RedditFlair(RedditClient):
         self.flair_self_assign_enabled = None
         self.link_flair_position = None
         self.link_flair_self_assign_enabled = None
+        self.flair_csv = []
 
 
     def generate_body(self):
@@ -45,6 +46,8 @@ class RedditFlair(RedditClient):
             body['link_flair_position'] = self.link_flair_position
         if self.link_flair_self_assign_enabled != None:
             body['link_flair_self_assign_enabled'] = self.link_flair_self_assign_enabled
+        if len(self.flair_csv) > 0:
+            body['flair_csv'] = ','.join(self.flair_csv)
         return body
 
 
@@ -62,3 +65,4 @@ class RedditFlair(RedditClient):
         self.flair_self_assign_enabled = None
         self.link_flair_position = None
         self.link_flair_self_assign_enabled = None
+        self.flair_csv = []

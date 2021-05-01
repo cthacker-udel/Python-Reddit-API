@@ -554,6 +554,20 @@ def update_flair_config(client):
 
     pprint(request)
 
+def flair_config_users(client):
+
+    url = base_url + '[/r/{}]/api/flaircsv'.format(client.RedditFlair.subreddit_name)
+
+    headers = get_auth_header(client)
+
+    data = client.RedditFlair.generate_body()
+
+    request = requests.post(url,body=data,headers=headers)
+
+    pprint(request)
+
+
+
 
 
 
