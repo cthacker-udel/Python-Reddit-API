@@ -529,6 +529,22 @@ def get_flair(client):
     pprint(request)
 
 
+def update_flair_template_order(client):
+
+    url = base_url + '[/r/{}]/api/flair_template_order'.format(client.RedditFlair.subreddit_name)
+
+    headers = get_auth_header(client)
+
+    data = client.RedditFlair.generate_body()
+
+    request = requests.patch(url,body=data,headers=headers)
+
+    pprint(request)
+
+
+
+
+
 
 
 
