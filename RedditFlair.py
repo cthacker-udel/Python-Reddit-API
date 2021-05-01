@@ -8,6 +8,10 @@ class RedditFlair(RedditClient):
         self.uh_x_modhash = None
         self.subreddit_name = None
         self.flair_name = None
+        self.css_class = None
+        self.link = None
+        self.user_name = None
+        self.text = None
 
 
     def generate_body(self):
@@ -18,6 +22,14 @@ class RedditFlair(RedditClient):
             body['uh / X-Modhash header'] = self.uh_x_modhash
         if self.flair_name != None:
             body['name'] = self.flair_name
+        if self.css_class != None:
+            body['css_class'] = self.css_class
+        if self.link != None:
+            body['link'] = self.link
+        if self.user_name != None:
+            body['name'] = self.user_name
+        if self.text != None:
+            body['text'] = self.text
         return body
 
 
@@ -26,3 +38,7 @@ class RedditFlair(RedditClient):
         self.flair_type = None
         self.uh_x_modhash = None
         self.flair_name = None
+        self.css_class = None
+        self.link = None
+        self.user_name = None
+        self.text = None
