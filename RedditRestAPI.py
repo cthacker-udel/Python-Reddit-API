@@ -495,15 +495,28 @@ def clear_flair_templates(client):
 
 def delete_flair(client):
 
-    url = base_url + '[/r/{}]/api/deleteflair'
+    url = base_url + '[/r/{}]/api/deleteflair'.format(client.RedditFlair.subreddit_name)
 
     headers = get_auth_header(client)
 
     data = client.RedditFlair.generate_body()
 
-    request = requests.delete(url,headers=headers,data=data)
+    request = requests.post(url,headers=headers,data=data)
 
     pprint(request)
+
+
+def delete_flair_template(client):
+
+    url = base_url + '[/r/{}]/api/deleteflairtemplate'.format(client.RedditFlair.subreddit_name)
+
+    headers = get_auth_header(client)
+
+    data = client.RedditFlair.generate_body()
+
+    request = requests.post(url,headers=headers,data=data)
+
+
 
 
 
