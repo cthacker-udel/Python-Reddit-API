@@ -18,6 +18,12 @@ class RedditFlair(RedditClient):
         self.link_flair_position = None
         self.link_flair_self_assign_enabled = None
         self.flair_csv = []
+        self.after = None
+        self.before = None
+        self.count = None
+        self.limit = None
+        self.show = None
+        self.sr_detail = None
 
 
     def generate_body(self):
@@ -48,6 +54,18 @@ class RedditFlair(RedditClient):
             body['link_flair_self_assign_enabled'] = self.link_flair_self_assign_enabled
         if len(self.flair_csv) > 0:
             body['flair_csv'] = ','.join(self.flair_csv)
+        if self.after != None:
+            body['after'] = self.after
+        if self.before != None:
+            body['before'] = self.before
+        if self.count != None:
+            body['count'] = self.count
+        if self.limit != None:
+            body['limit'] = self.limit
+        if self.show != None:
+            body['show'] = self.show
+        if self.sr_detail != None:
+            body['sr_detail'] = self.sr_detail
         return body
 
 
@@ -66,3 +84,9 @@ class RedditFlair(RedditClient):
         self.link_flair_position = None
         self.link_flair_self_assign_enabled = None
         self.flair_csv = []
+        self.after = None
+        self.before = None
+        self.count = None
+        self.limit = None
+        self.show = None
+        self.sr_detail = None

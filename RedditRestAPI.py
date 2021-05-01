@@ -566,6 +566,20 @@ def flair_config_users(client):
 
     pprint(request)
 
+def flair_list(client):
+
+    url = base_url + '[/r/{}]/api/flairlist'.format(client.RedditFlair.subreddit_name)
+
+    headers = get_auth_header(client)
+
+    data = client.RedditFlair.generate_body()
+
+    request = requests.get(url,headers=headers,body=data)
+
+    pprint(request)
+
+
+
 
 
 
