@@ -254,7 +254,7 @@ def add_post_to_collection(client):
 
     headers = get_auth_header(client)
 
-    request = requests.post(url,headers=headers,data=body)
+    request = requests.post(url,headers=headers,body=body)
 
     pprint(request)
 
@@ -283,7 +283,7 @@ def create_collection(client):
 
     headers = get_auth_header(client)
 
-    request = requests.post(url,headers=headers,data=body)
+    request = requests.post(url,headers=headers,body=body)
 
     pprint(request)
 
@@ -298,7 +298,7 @@ def delete_collection(client):
 
     headers = get_auth_header(client)
 
-    request = requests.post(url,headers=headers,data=body)
+    request = requests.post(url,headers=headers,body=body)
 
     pprint(request)
 
@@ -312,7 +312,7 @@ def follow_collection(client):
 
     headers = get_auth_header(client)
 
-    request = requests.post(url,headers=headers,data=body)
+    request = requests.post(url,headers=headers,body=body)
 
     pprint(request)
 
@@ -326,7 +326,7 @@ def remove_post_in_collection(client):
 
     headers = get_auth_header(client)
 
-    request = requests.post(url,headers=headers,data=body)
+    request = requests.post(url,headers=headers,body=body)
 
     pprint(request)
 
@@ -341,7 +341,7 @@ def reorder_collection(client):
 
     headers = get_auth_header(client)
 
-    request = requests.post(url,headers=headers,data=body)
+    request = requests.post(url,headers=headers,body=body)
 
     pprint(request)
 
@@ -371,7 +371,7 @@ def update_collection_description(client):
     headers = get_auth_header(client)
 
 
-    request = requests.post(url,headers=headers,data=body)
+    request = requests.post(url,headers=headers,body=body)
 
     pprint(request)
 
@@ -385,7 +385,7 @@ def update_collection_display_layout(client):
 
     headers = get_auth_header(client)
 
-    request = requests.post(url,headers=headers,data=body)
+    request = requests.post(url,headers=headers,body=body)
 
     pprint(request)
 
@@ -399,7 +399,7 @@ def update_collection_title(client):
 
     headers = get_auth_header(client)
 
-    request = requests.post(url,headers=headers,data=body)
+    request = requests.post(url,headers=headers,body=body)
 
     pprint(request)
 
@@ -445,7 +445,7 @@ def upload_emoji_asset(client):
 
     body = client.RedditEmoji.generate_body()
 
-    request = requests.post(url,headers=headers,data=body)
+    request = requests.post(url,headers=headers,body=body)
 
     pprint(request)
 
@@ -458,7 +458,7 @@ def set_emoji_size(client):
 
     body = client.RedditEmoji.generate_body()
 
-    request = requests.post(url,headers=headers,data=body)
+    request = requests.post(url,headers=headers,body=body)
 
     pprint(request)
 
@@ -487,7 +487,7 @@ def clear_flair_templates(client):
 
     data = client.RedditFlair.generate_body()
 
-    request = requests.post(url,headers=headers,data=data)
+    request = requests.post(url,headers=headers,body=data)
 
     pprint(request)
 
@@ -501,7 +501,7 @@ def delete_flair(client):
 
     data = client.RedditFlair.generate_body()
 
-    request = requests.post(url,headers=headers,data=data)
+    request = requests.post(url,headers=headers,body=data)
 
     pprint(request)
 
@@ -514,7 +514,20 @@ def delete_flair_template(client):
 
     data = client.RedditFlair.generate_body()
 
-    request = requests.post(url,headers=headers,data=data)
+    request = requests.post(url,headers=headers,body=data)
+
+def get_flair(client):
+
+    url = base_url + '[/r/{}]/api/flair'.format(client.RedditFlair.subreddit_name)
+
+    headers = get_auth_header(client)
+
+    data = client.RedditFlair.generate_body()
+
+    request = requests.post(url,headers = headers,body=data)
+
+    pprint(request)
+
 
 
 
