@@ -638,7 +638,17 @@ def link_flair_v2(client):
 
     pprint(request)
 
-s
+def select_flair(client):
+
+    url = base_url + '[/r/{}]/api/selectflair'.format(client.RedditFlair.subreddit_name)
+
+    headers = get_auth_header(client)
+
+    body = client.RedditFlair.generate_body()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
 
 
 

@@ -33,6 +33,7 @@ class RedditFlair(RedditClient):
         self.mod_only = None
         self.override_css = None
         self.text_color = None
+        self.return_rtson = None
 
 
     def generate_body(self):
@@ -93,6 +94,8 @@ class RedditFlair(RedditClient):
             body['override_css'] = self.override_css
         if self.text_color != None:
             body['text_color'] = self.text_color
+        if self.return_rtson != None:
+            body['return_rtson'] = self.return_rtson
         return body
 
 
@@ -126,3 +129,4 @@ class RedditFlair(RedditClient):
         self.mod_only = None
         self.override_css = None
         self.text_color = None
+        self.return_rtson = None
