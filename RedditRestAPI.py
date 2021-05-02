@@ -587,11 +587,33 @@ def flair_selector(client):
 
     data = client.RedditFlair.generate_body()
 
-    request = requests.get(url,headers=headers,body=data)
+    request = requests.post(url,headers=headers,body=data)
 
     pprint(request)
 
+def flair_template(client):
 
+    url = base_url + '[/r/{}]/api/flairtemplate'.format(client.RedditFlair.subreddit_name)
+
+    headers = get_auth_header(client)
+
+    data = client.RedditFlair.generate_body()
+
+    request = requests.post(url,headers=headers,body=data)
+
+    pprint(request)
+
+def flair_template_v2(client):
+
+    url = base_url + '[/r/{}]/api/flairtemplate_v2'.format(client.RedditFlair.subreddit_name)
+
+    headers = get_auth_header(client)
+
+    data = client.RedditFlair.generate_body()
+
+    request = requests.post(url,headers=headers,body=data)
+
+    pprint(request)
 
 
 

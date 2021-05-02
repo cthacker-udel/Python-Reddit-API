@@ -25,6 +25,14 @@ class RedditFlair(RedditClient):
         self.show = None
         self.sr_detail = None
         self.is_newlink = None
+        self.flair_template_id = None
+        self.text_editable = None
+        self.allowable_content = None
+        self.background_color = None
+        self.max_emojis = None
+        self.mod_only = None
+        self.override_css = None
+        self.text_color = None
 
 
     def generate_body(self):
@@ -69,6 +77,22 @@ class RedditFlair(RedditClient):
             body['sr_detail'] = self.sr_detail
         if self.is_newlink != None:
             body['is_newlink'] = self.is_newlink
+        if self.flair_template_id != None:
+            body['flair_template_id'] = self.flair_template_id
+        if self.text_editable != None:
+            body['text_editable'] = self.text_editable
+        if self.allowable_content != None:
+            body['allowable_content']  = self.allowable_content
+        if self.background_color != None:
+            body['background_color'] = self.background_color
+        if self.max_emojis != None:
+            body['max_emojis'] = self.max_emojis
+        if self.mod_only != None:
+            body['mod_only'] = self.mod_only
+        if self.override_css != None:
+            body['override_css'] = self.override_css
+        if self.text_color != None:
+            body['text_color'] = self.text_color
         return body
 
 
@@ -94,3 +118,11 @@ class RedditFlair(RedditClient):
         self.show = None
         self.sr_detail = None
         self.is_newlink = None
+        self.flair_template_id = None
+        self.text_editable = None
+        self.allowable_content = None
+        self.background_color = None
+        self.max_emojis = None
+        self.mod_only = None
+        self.override_css = None
+        self.text_color = None
