@@ -24,6 +24,7 @@ class RedditFlair(RedditClient):
         self.limit = None
         self.show = None
         self.sr_detail = None
+        self.is_newlink = None
 
 
     def generate_body(self):
@@ -66,6 +67,8 @@ class RedditFlair(RedditClient):
             body['show'] = self.show
         if self.sr_detail != None:
             body['sr_detail'] = self.sr_detail
+        if self.is_newlink != None:
+            body['is_newlink'] = self.is_newlink
         return body
 
 
@@ -90,3 +93,4 @@ class RedditFlair(RedditClient):
         self.limit = None
         self.show = None
         self.sr_detail = None
+        self.is_newlink = None

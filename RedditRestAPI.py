@@ -579,6 +579,21 @@ def flair_list(client):
     pprint(request)
 
 
+def flair_selector(client):
+
+    url = base_url + '[/r/{}]/api/flairselector'.format(client.RedditFlair.subreddit_name)
+
+    headers = get_auth_header(client)
+
+    data = client.RedditFlair.generate_body()
+
+    request = requests.get(url,headers=headers,body=data)
+
+    pprint(request)
+
+
+
+
 
 
 
