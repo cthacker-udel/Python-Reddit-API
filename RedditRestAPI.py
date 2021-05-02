@@ -616,6 +616,18 @@ def flair_template_v2(client):
     pprint(request)
 
 
+def link_flair(client):
+
+    url = base_url + '[/r/{}]/api/link_flair'.format(client.RedditFlair.subreddit_name)
+
+    headers = get_auth_header(client)
+
+
+    request = requests.get(url,headers=headers)
+
+    pprint(request)
+
+
 
 
 
