@@ -693,7 +693,31 @@ def user_flair_v2(client):
 def gold_fullname(client):
 
 
-    url = base_url + '/api/v1/gold/gild/{}'
+    url = base_url + '/api/v1/gold/gild/{}'.format(client.RedditGold.full_name)
+
+    headers = get_auth_header(client)
+
+    body = client.RedditGold.generate_body()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+def gold_username(client):
+
+    url = base_url + '/api/v1/gold/give/{}'.format(client.RedditGold.username)
+
+    headers = get_auth_header(client)
+
+    body = client.RedditGold.generate_body()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+
 
 
 
