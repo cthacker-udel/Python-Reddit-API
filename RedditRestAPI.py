@@ -651,6 +651,51 @@ def select_flair(client):
     pprint(request)
 
 
+def set_flair_enabled(client):
+
+    url = base_url + '[/r/{}]/api/setflairenabled'.format(client.RedditFlair.subreddit_name)
+
+    headers = get_auth_header(client)
+
+    body = client.RedditFlair.generate_body()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+def user_flair(client):
+
+    url = base_url + '[/r/{}]/api/user_flair'.format(client.RedditFlair.subreddit_name)
+
+    headers = get_auth_header(client)
+
+    request = requests.get(url,headers=headers)
+
+    pprint(request)
+
+def user_flair_v2(client):
+
+    url = base_url + '[/r/{}]/api/user_flair_v2'.format(client.RedditFlair.subreddit_name)
+
+    headers = get_auth_header(client)
+
+    request = requests.get(url,headers=headers)
+
+    pprint(request)
+
+
+###############
+# GOLD METHODS
+###############
+
+
+def gold_fullname(client):
+
+
+    url = base_url + '/api/v1/gold/gild/{}'
+
+
 
 
 
