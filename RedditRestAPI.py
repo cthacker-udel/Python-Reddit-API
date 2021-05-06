@@ -717,6 +717,51 @@ def gold_username(client):
     pprint(request)
 
 
+###################
+# LINKS & COMMENTS
+###################
+
+def submit_comment(client):
+
+    url = base_url + '/api/comment'
+
+    headers = get_auth_header(client)
+
+    body = client.RedditLinkComment.generate_body()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+def delete_link_or_comment(client):
+
+    url = base_url + '/api/del'
+
+    headers = get_auth_header(client)
+
+    body = client.RedditLinkComment.generate_body()
+
+    request = requests.delete(url,headers=headers,body=body)
+
+    pprint(request)
+
+def edit_comment_text(client):
+
+    url = base_url + "/api/editusertext"
+
+    headers = get_auth_header(client)
+
+    body = client.RedditLinkComment.generate_body()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+def add_or_modify_event_times(client):
+
+    pass
+
 
 
 
