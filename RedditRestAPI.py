@@ -760,7 +760,15 @@ def edit_comment_text(client):
 
 def add_or_modify_event_times(client):
 
-    pass
+    url = base_url + '/api/event_post_time'
+
+    headers = get_auth_header(client)
+
+    body = client.RedditLinkComment.generate_body()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
 
 
 

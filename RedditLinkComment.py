@@ -12,6 +12,9 @@ class RedditLinkComment(RedditClient):
         self.thing_id = None
         self.id = None
         self.uh_x_modhash_header = None
+        self.event_end = None
+        self.event_start = None
+        self.event_tz = None
 
     def generate_body(self):
         body = {}
@@ -27,6 +30,12 @@ class RedditLinkComment(RedditClient):
             body['thing_id'] = self.thing_id
         if self.uh_x_modhash_header != None:
             body['uh / X-Modhash header'] = self.uh_x_modhash_header
+        if self.event_end != None:
+            body['event_end'] = self.event_end
+        if self.event_start != None:
+            body['event_start'] = self.event_start
+        if self.event_tz != None:
+            body['event_tz'] = self.event_tz
         return body
 
 
