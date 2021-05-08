@@ -18,6 +18,11 @@ class RedditLinkComment(RedditClient):
         self.follow = None
         self.fullname = None
         self.sr_name = None
+        self.children = None
+        self.depth = None
+        self.limit_children = None
+        self.link_id = None
+        self.sort = None
 
     def generate_body(self):
         body = {}
@@ -45,6 +50,16 @@ class RedditLinkComment(RedditClient):
             body['fullname'] = self.fullname
         if self.sr_name != None:
             body['sr_name'] = self.sr_name
+        if self.children != None:
+            body['children'] = self.children
+        if self.depth != None:
+            body['depth'] = self.depth
+        if self.limit_children != None:
+            body['limit_children'] = self.limit_children
+        if self.link_id != None:
+            body['link_id'] = self.link_id
+        if self.sort != None:
+            body['sort'] = self.sort
         return body
 
 

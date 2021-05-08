@@ -807,6 +807,46 @@ def comment_link_info(client):
 
     pprint(request)
 
+def lock_comment(client):
+
+    url = base_url + '/api/lock'
+
+    headers = get_auth_header(client)
+
+    body = client.RedditLinkComment.generate_body()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+def mark_link_nsfw(client):
+
+    url = base_url + '/api/marknsfw'
+
+    headers = get_auth_header(client)
+
+    body = client.RedditLinkComment.generate_body()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+def retrieve_additional_comments(client):
+
+    url = base_url + '/api/morechildren'
+
+    headers = get_auth_header(client)
+
+    body = client.RedditLinkComment.generate_body()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+
+
 
 
 
