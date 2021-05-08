@@ -893,6 +893,20 @@ def get_list_saved_categories(client):
 
     pprint(request)
 
+def enable_disable_replies_link_or_comment(client):
+
+    url = base_url + '/api/sendreplies'
+
+    headers = get_auth_header(client)
+
+    body = client.RedditLinkComment.generate_body()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+
 
 
 
