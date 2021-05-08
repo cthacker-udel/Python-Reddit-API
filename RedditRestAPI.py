@@ -857,6 +857,33 @@ def report_link(client):
     pprint(request)
 
 
+def report_award(client):
+
+    url = base_url + '/api/report_award'
+
+    headers = get_auth_header(client)
+
+    body = client.RedditLinkComment.generate_body()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+def save_link_or_comment(client):
+
+    url = base_url + '/api/save'
+
+    headers = get_auth_header(client)
+
+    body = client.RedditLinkComment.generate_body()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+
+
 
 
 

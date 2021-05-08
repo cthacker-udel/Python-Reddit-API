@@ -32,6 +32,8 @@ class RedditLinkComment(RedditClient):
         self.rule_reason = None
         self.site_reason = None
         self.usernames = None
+        self.award_id = None
+        self.category = None
 
     def generate_body(self):
         body = {}
@@ -89,6 +91,10 @@ class RedditLinkComment(RedditClient):
             body['thing_id'] = self.thing_id
         if self.usernames != None:
             body['usernames'] = self.usernames
+        if self.award_id != None:
+            body['award_id'] = self.award_id
+        if self.category != None:
+            body['category'] = self.category
         return body
 
 
@@ -116,3 +122,5 @@ class RedditLinkComment(RedditClient):
         self.rule_reason = None
         self.site_reason = None
         self.usernames = None
+        self.award_id = None
+        self.category = None
