@@ -881,6 +881,18 @@ def save_link_or_comment(client):
 
     pprint(request)
 
+def get_list_saved_categories(client):
+
+    url = base_url + '/api/saved_categories'
+
+    headers = get_auth_header(client)
+
+    body = client.RedditLinkComment.generate_body()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
 
 
 
