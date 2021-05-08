@@ -844,6 +844,18 @@ def retrieve_additional_comments(client):
 
     pprint(request)
 
+def report_link(client):
+
+    url = base_url + '/api/report'
+
+    headers = get_auth_header(client)
+
+    body = client.RedditLinkComment.generate_body()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
 
 
 

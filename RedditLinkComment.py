@@ -23,6 +23,15 @@ class RedditLinkComment(RedditClient):
         self.limit_children = None
         self.link_id = None
         self.sort = None
+        self.custom_text = None
+        self.from_help_desk = None
+        self.from_modmail = None
+        self.modmail_conv_id = None
+        self.other_reason = None
+        self.reason = None
+        self.rule_reason = None
+        self.site_reason = None
+        self.usernames = None
 
     def generate_body(self):
         body = {}
@@ -60,6 +69,26 @@ class RedditLinkComment(RedditClient):
             body['link_id'] = self.link_id
         if self.sort != None:
             body['sort'] = self.sort
+        if self.custom_text != None:
+            body['custom_text'] = self.custom_text
+        if self.from_help_desk != None:
+            body['from_help_desk'] = self.from_help_desk
+        if self.from_modmail != None:
+            body['from_modmail'] = self.from_modmail
+        if self.modmail_conv_id != None:
+            body['modmail_conv_id'] = self.modmail_conv_id
+        if self.other_reason != None:
+            body['other_reason'] = self.other_reason
+        if self.reason != None:
+            body['reason'] = self.reason
+        if self.rule_reason != None:
+            body['rule_reason'] = self.rule_reason
+        if self.site_reason != None:
+            body['site_reason'] = self.reason
+        if self.thing_id != None:
+            body['thing_id'] = self.thing_id
+        if self.usernames != None:
+            body['usernames'] = self.usernames
         return body
 
 
@@ -73,3 +102,17 @@ class RedditLinkComment(RedditClient):
         self.uh_x_modhash_header = None
         self.follow = None
         self.fullname = None
+        self.children = None
+        self.depth = None
+        self.limit_children = None
+        self.link_id = None
+        self.sort = None
+        self.custom_text = None
+        self.from_help_desk = None
+        self.from_modmail = None
+        self.modmail_conv_id = None
+        self.other_reason = None
+        self.reason = None
+        self.rule_reason = None
+        self.site_reason = None
+        self.usernames = None
