@@ -771,6 +771,43 @@ def add_or_modify_event_times(client):
     pprint(request)
 
 
+def follow_post(client):
+
+    url = base_url + '/api/follow_post'
+
+    headers = get_auth_header(client)
+
+    body = client.RedditLinkComment.generate_body()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+def hide_link(client):
+
+    url = base_url + '/api/hide'
+
+    headers = get_auth_header(client)
+
+    body = client.RedditLinkComment.generate_body()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+def comment_link_info(client):
+
+    url = base_url + '[/r/{}]/api/info'
+
+    headers = get_auth_header(client)
+
+    body = client.RedditLinkComment.generate_body()
+
+    request = requests.get(url,headers=headers,body=body)
+
+    pprint(request)
+
+
 
 
 

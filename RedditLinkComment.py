@@ -15,6 +15,9 @@ class RedditLinkComment(RedditClient):
         self.event_end = None
         self.event_start = None
         self.event_tz = None
+        self.follow = None
+        self.fullname = None
+        self.sr_name = None
 
     def generate_body(self):
         body = {}
@@ -36,6 +39,12 @@ class RedditLinkComment(RedditClient):
             body['event_start'] = self.event_start
         if self.event_tz != None:
             body['event_tz'] = self.event_tz
+        if self.follow != None:
+            body['follow'] = self.follow
+        if self.fullname != None:
+            body['fullname'] = self.fullname
+        if self.sr_name != None:
+            body['sr_name'] = self.sr_name
         return body
 
 
@@ -47,3 +56,5 @@ class RedditLinkComment(RedditClient):
         self.thing_id = None
         self.id = None
         self.uh_x_modhash_header = None
+        self.follow = None
+        self.fullname = None
