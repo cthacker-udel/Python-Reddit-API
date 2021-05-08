@@ -905,7 +905,17 @@ def enable_disable_replies_link_or_comment(client):
 
     pprint(request)
 
+def set_unset_contestmode_link(client):
 
+    url = base_url + '/api/set_contest_mode'
+
+    headers = get_auth_header(client)
+
+    body = client.RedditLinkComment.generate_body()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
 
 
 
