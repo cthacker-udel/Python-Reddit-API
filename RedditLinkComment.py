@@ -35,6 +35,8 @@ class RedditLinkComment(RedditClient):
         self.award_id = None
         self.category = None
         self.state = None
+        self.num = None
+        self.to_profile = None
 
     def generate_body(self):
         body = {}
@@ -98,6 +100,10 @@ class RedditLinkComment(RedditClient):
             body['category'] = self.category
         if self.state != None:
             body['state'] = self.state
+        if self.num != None:
+            body['num'] = self.num
+        if self.to_profile != None:
+            body['to_profile'] = self.to_profile
         return body
 
 
@@ -128,3 +134,5 @@ class RedditLinkComment(RedditClient):
         self.award_id = None
         self.category = None
         self.state = None
+        self.num = None
+        self.to_profile = None

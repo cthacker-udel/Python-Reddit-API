@@ -918,6 +918,31 @@ def set_unset_contestmode_link(client):
     pprint(request)
 
 
+def set_link_sticky(client):
+
+    url = base_url + '/api/set_subreddit_sticky'
+
+    headers = get_auth_header(client)
+
+    body = client.RedditLinkComment.generate_body()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+def set_link_suggested_sort(client):
+
+    url = base_url + '/api/set_suggested/sort'
+
+    headers = get_auth_header(client)
+
+    body = client.RedditLinkComment.generate_body()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
 
 
 
