@@ -37,6 +37,7 @@ class RedditLinkComment(RedditClient):
         self.state = None
         self.num = None
         self.to_profile = None
+        self.links = []
 
     def generate_body(self):
         body = {}
@@ -104,6 +105,8 @@ class RedditLinkComment(RedditClient):
             body['num'] = self.num
         if self.to_profile != None:
             body['to_profile'] = self.to_profile
+        if len(self.links) > 0:
+            body['links'] = ','.join(self.links)
         return body
 
 
@@ -136,3 +139,4 @@ class RedditLinkComment(RedditClient):
         self.state = None
         self.num = None
         self.to_profile = None
+        self.links = []

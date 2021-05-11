@@ -942,6 +942,35 @@ def set_link_suggested_sort(client):
 
     pprint(request)
 
+def link_spoiler(client):
+
+    url = base_url + '/api/spoiler'
+
+    headers = get_auth_header(client)
+
+    body = client.RedditLinkComment.generate_body()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+def link_store_visits(client):
+
+    # requires Reddit Premium
+
+    url = base_url + '/api/store_visits'
+
+    headers = get_auth_header(client)
+
+    body = client.RedditLinkComment.generate_body()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+
 
 
 
