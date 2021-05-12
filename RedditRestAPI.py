@@ -1019,6 +1019,31 @@ def unmark_link_nsfw(client):
 
     pprint(request)
 
+def unsave_link_or_comment(client):
+
+    url = base_url + '/api/unsave'
+
+    headers = get_auth_header(client)
+
+    body = client.RedditLinkComment.generate_body()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+def unspoil_link(client):
+
+    url = base_url + '/api/unspoiler'
+
+    headers = get_auth_header(client)
+
+    body = client.RedditLinkComment.generate_body()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
 
 
 
