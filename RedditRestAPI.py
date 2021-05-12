@@ -10,21 +10,21 @@ from RedditClient import RedditClient
 
 base_auth_url = 'https://www.reddit.com/api/v1/authorize'
 
-#base_url = 'https://www.reddit.com'
+# base_url = 'https://www.reddit.com'
 
-#base_url = 'https://ssl.reddit.com'
+# base_url = 'https://ssl.reddit.com'
 
 base_url = 'https://oauth.reddit.com'
 
-def get_auth_header(client):
 
-    headers = {'Authorization': 'Bearer {}'.format(client.access_token),
+def get_auth_header(redditclient):
+    headers = {'Authorization': 'Bearer {}'.format(redditclient.access_token),
                'User-Agent': 'cthacker-udel Reddit API Python Wrapper'}
 
     return headers
 
 
-def implicit_grant_flow(client):
+def implicit_grant_flow(redditclient):
     try:
         br = webdriver.Firefox(FirefoxDriverManager().install())
     except Exception as e:
@@ -35,14 +35,14 @@ def implicit_grant_flow(client):
 
     queryStringList = []
 
-    params = {'client_id': client.client_id,
+    params = {'redditclient_id': redditclient.redditclient_id,
               'response_type': 'token',
               'state': 'RANDOM_STRING',
-              'redirect_uri': client.redirect_uri,
-              'scope': ' '.join(client.scopes)}
+              'redirect_uri': redditclient.redirect_uri,
+              'scope': ' '.join(redditclient.scopes)}
 
     for eachkey in params.keys():
-        queryStringList.append('{}={}'.format(eachkey,params[eachkey]))
+        queryStringList.append('{}={}'.format(eachkey, params[eachkey]))
 
     queryString = '&'.join(queryStringList)
 
@@ -56,14 +56,14 @@ def implicit_grant_flow(client):
     log('Filling in username')
 
     username_box = br.find_element_by_id('loginUsername')
-    username_box.send_keys(client.username)
+    username_box.send_keys(redditclient.username)
 
     time.sleep(1)
 
     log('Filling in password')
 
     password_box = br.find_element_by_id('loginPassword')
-    password_box.send_keys(client.password)
+    password_box.send_keys(redditclient.password)
 
     time.sleep(2)
 
@@ -83,29 +83,27 @@ def implicit_grant_flow(client):
 
     response = curr_url.split('&token_type')
 
-    client.set_access_token(response[0].split("access_token=")[1])
+    redditclient.set_access_token(response[0].split("access_token=")[1])
 
     return response
 
 
-def token_post_request(client):
-
+def token_post_request(redditclient):
     url = base_url + '/api/v1/access_token'
 
     user_agent = {'User-Agent': 'cthacker-udel Reddit API Python Wrapper'}
 
-    client_auth = requests.auth.HTTPBasicAuth(client.client_id,client.client_secret)
+    redditclient_auth = requests.auth.HTTPBasicAuth(redditclient.redditclient_id, redditclient.redditclient_secret)
 
     headers = {'User-Agent': 'cthacker-udel Reddit API Python Wrapper'}
 
     data = {'grant_type': 'authorization_code',
-            'code': client.oauth_code,
-            'redirect_uri': client.redirect_uri}
+            'code': redditclient.oauth_code,
+            'redirect_uri': redditclient.redirect_uri}
 
-    request = requests.post(url,data=data,headers=headers,auth=client_auth)
+    request = requests.post(url, data=data, headers=headers, auth=redditclient_auth)
 
     pprint(request)
-
 
 
 ############################################
@@ -113,15 +111,14 @@ def token_post_request(client):
 ############################################
 
 
-def get_user_identitiy(client):
-
+def get_user_identitiy(redditclient):
     url = base_url + '/api/v1/me'
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    #client_auth = requests.auth.HTTPBasicAuth(client.client_id, client.client_secret)
+    # redditclient_auth = requests.auth.HTTPBasicAuth(redditclient.redditclient_id, redditclient.redditclient_secret)
 
-    request = requests.get(url,headers=headers).json()
+    request = requests.get(url, headers=headers).json()
 
     pprint(request)
 
@@ -130,93 +127,86 @@ def get_user_identitiy(client):
     return request
 
 
-def get_user_identity_features(client):
-
-    identity = get_user_identitiy(client)
+def get_user_identity_features(redditclient):
+    identity = get_user_identitiy(redditclient)
 
     return identity['features']
 
-def get_user_identity_attribute(client,attribute):
 
-    identity = get_user_identitiy(client)
+def get_user_identity_attribute(redditclient, attribute):
+    identity = get_user_identitiy(redditclient)
 
     return identity[attribute]
 
 
-
-
-def get_user_karma(client):
-
+def get_user_karma(redditclient):
     url = base_url + '/api/v1/me/karma'
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    request = requests.get(url,headers=headers).json()
+    request = requests.get(url, headers=headers).json()
 
     pprint(request)
 
     return request.status_code == 200
 
 
-def get_user_preference_settings(client):
-
+def get_user_preference_settings(redditclient):
     url = base_url + '/api/v1/me/prefs'
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    request = requests.get(url,headers=headers).json()
+    request = requests.get(url, headers=headers).json()
 
     pprint(request)
 
     return request.status_code == 200
 
 
-def edit_user_preference_settings(client):
-
+def edit_user_preference_settings(redditclient):
     url = base_url + '/api/v1/me/prefs'
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    body = client.PreferenceSettings.convert_patch_body()
+    body = redditclient.PreferenceSettings.convert_patch_body()
 
-    request = requests.patch(url,json=body,headers=headers)
+    request = requests.patch(url, json=body, headers=headers)
 
     pprint(request)
 
     return request.status_code == 200
 
 
-def get_user_trophies(client):
-
+def get_user_trophies(redditclient):
     url = base_url + '/api/v1/me/trophies'
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    request = requests.get(url,headers=headers)
-
-    pprint(request)
-
-    return request.status_code == 200
-
-def get_preference_settings_where(client):
-
-    url = base_url = '/prefs/{}'.format(client.PreferenceSettings.where)
-
-    headers = get_auth_header(client)
-
-    request = requests.get(url,headers=headers)
+    request = requests.get(url, headers=headers)
 
     pprint(request)
 
     return request.status_code == 200
 
-def get_preference_settings_v1(client):
 
-    url = base_url + "/api/v1/me/{}".format(client.PreferenceSettings.where)
+def get_preference_settings_where(redditclient):
+    url = base_url + '/prefs/{}'.format(redditclient.PreferenceSettings.where)
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    request = requests.get(url,headers=headers)
+    request = requests.get(url, headers=headers)
+
+    pprint(request)
+
+    return request.status_code == 200
+
+
+def get_preference_settings_v1(redditclient):
+    url = base_url + "/api/v1/me/{}".format(redditclient.PreferenceSettings.where)
+
+    headers = get_auth_header(redditclient)
+
+    request = requests.get(url, headers=headers)
 
     pprint(request)
 
@@ -228,13 +218,12 @@ def get_preference_settings_v1(client):
 #################################
 
 
-def check_captcha(client):
-
+def check_captcha(redditclient):
     url = base_url + "/api/needs_captcha"
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    request = requests.get(url,headers=headers)
+    request = requests.get(url, headers=headers)
 
     pprint(request)
 
@@ -246,165 +235,158 @@ def check_captcha(client):
 #################################
 
 
-def add_post_to_collection(client):
-
+def add_post_to_collection(redditclient):
     url = base_url + '/api/v1/collections/add_post_to_collection'
 
-    body = client.RedditCollection.generate_body()
+    body = redditclient.RedditCollection.generate_body()
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
     return request.status_code == 200
 
 
-def fetch_collection(client):
-
+def fetch_collection(redditclient):
     url = base_url + '/api/v1/collections/collection'
 
-    body = client.RedditCollection.generate_body()
+    body = redditclient.RedditCollection.generate_body()
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    request = requests.get(url,headers=headers,body=body)
+    request = requests.get(url, headers=headers, body=body)
 
     pprint(request)
 
     return request.status_code == 200
 
-def create_collection(client):
 
+def create_collection(redditclient):
     url = base_url + '/api/v1/collections/create_collection'
 
-    body = client.RedditCollection.generate_body()
+    body = redditclient.RedditCollection.generate_body()
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
     return request.status_code == 200
 
 
-def delete_collection(client):
-
+def delete_collection(redditclient):
     url = base_url + '/api/v1/collections/delete_collection'
 
-    body = client.RedditCollection.generate_body()
+    body = redditclient.RedditCollection.generate_body()
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
     return request.status_code == 200
 
-def follow_collection(client):
 
+def follow_collection(redditclient):
     url = base_url + '/api/v1/collections/follow_collection'
 
-    body = client.RedditCollection.generate_body()
+    body = redditclient.RedditCollection.generate_body()
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
     return request.status_code == 200
 
-def remove_post_in_collection(client):
 
+def remove_post_in_collection(redditclient):
     url = base_url + '/api/v1/collections/remove_post_in_collection'
 
-    body = client.RedditCollection.generate_body()
+    body = redditclient.RedditCollection.generate_body()
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
     return request.status_code == 200
 
 
-def reorder_collection(client):
-
+def reorder_collection(redditclient):
     url = base_url + '/api/v1/collections/reorder_collection'
 
-    body = client.RedditCollection.generate_body()
+    body = redditclient.RedditCollection.generate_body()
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
     return request.status_code == 200
 
 
-def fetch_subreddit_collections(client):
-
+def fetch_subreddit_collections(redditclient):
     url = base_url + '/api/v1/collections/subreddit_collections'
 
-    body = client.RedditCollection.generate_body()
+    body = redditclient.RedditCollection.generate_body()
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    request = requests.get(url,headers=headers,body=body)
+    request = requests.get(url, headers=headers, body=body)
 
     pprint(request)
 
     return request.status_code == 200
 
-def update_collection_description(client):
 
+def update_collection_description(redditclient):
     url = base_url + '/api/v1/collections/update_collection_description'
 
-    body = client.RedditCollection.generate_body()
+    body = redditclient.RedditCollection.generate_body()
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
     return request.status_code == 200
 
-def update_collection_display_layout(client):
 
+def update_collection_display_layout(redditclient):
     url = base_url + '/api/v1/collections/update_collection_display_layout'
 
-    body = client.RedditCollection.generate_body()
+    body = redditclient.RedditCollection.generate_body()
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
     return request.status_code == 200
 
-def update_collection_title(client):
 
+def update_collection_title(redditclient):
     url = base_url + '/api/v1/collections/update_collection_title'
 
-    body = client.RedditCollection.generate_body()
+    body = redditclient.RedditCollection.generate_body()
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
     return request.status_code == 200
-
 
 
 #################################
@@ -412,63 +394,59 @@ def update_collection_title(client):
 #################################
 
 
+def add_emoji_to_subreddit(redditclient):
+    url = base_url + '/api/v1/{}/emoji.json'.format(redditclient.RedditEmoji.subreddit_name)
 
-def add_emoji_to_subreddit(client):
+    body = redditclient.RedditEmoji.generate_body()
 
-    url = base_url + '/api/v1/{}/emoji.json'.format(client.RedditEmoji.subreddit_name)
+    headers = get_auth_header(redditclient)
 
-    body = client.RedditEmoji.generate_body()
-
-    headers = get_auth_header(client)
-
-    request = requests.post(url,body=body,headers=headers)
+    request = requests.post(url, body=body, headers=headers)
 
     pprint(request)
 
 
-def delete_subreddit_emoji(client):
+def delete_subreddit_emoji(redditclient):
+    url = base_url + '/api/v1/{}/emoji/{}'.format(redditclient.RedditEmoji.subreddit_name,
+                                                  redditclient.RedditEmoji.name)
 
-    url = base_url + '/api/v1/{}/emoji/{}'.format(client.RedditEmoji.subreddit_name,client.RedditEmoji.name)
+    headers = get_auth_header(redditclient)
 
-    headers = get_auth_header(client)
-
-    request = requests.delete(url,headers=headers)
-
-    pprint(request)
-
-
-def upload_emoji_asset(client):
-
-    url = base_url + '/api/v1/{}/emoji_asset_upload_s3.json'.format(client.RedditEmoji.subreddit_name)
-
-    headers = get_auth_header(client)
-
-    body = client.RedditEmoji.generate_body()
-
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.delete(url, headers=headers)
 
     pprint(request)
 
 
-def set_emoji_size(client):
+def upload_emoji_asset(redditclient):
+    url = base_url + '/api/v1/{}/emoji_asset_upload_s3.json'.format(redditclient.RedditEmoji.subreddit_name)
 
-    url = base_url + '/api/v1/{}/emoji_custom_size'.format(client.RedditEmoji.subreddit_name)
+    headers = get_auth_header(redditclient)
 
-    headers = get_auth_header(client)
+    body = redditclient.RedditEmoji.generate_body()
 
-    body = client.RedditEmoji.generate_body()
-
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
-def get_subreddit_emojis(client):
 
-    url = base_url + '/api/v1/{}/emojis/all'.format(client.RedditEmoji.subreddit_name)
+def set_emoji_size(redditclient):
+    url = base_url + '/api/v1/{}/emoji_custom_size'.format(redditclient.RedditEmoji.subreddit_name)
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    request = requests.get(url,headers=headers)
+    body = redditclient.RedditEmoji.generate_body()
+
+    request = requests.post(url, headers=headers, body=body)
+
+    pprint(request)
+
+
+def get_subreddit_emojis(redditclient):
+    url = base_url + '/api/v1/{}/emojis/all'.format(redditclient.RedditEmoji.subreddit_name)
+
+    headers = get_auth_header(redditclient)
+
+    request = requests.get(url, headers=headers)
 
     pprint(request)
 
@@ -478,209 +456,198 @@ def get_subreddit_emojis(client):
 ##############################
 
 
+def clear_flair_templates(redditclient):
+    url = base_url + '[/r/{}]/api/clearflairtemplates'.format(redditclient.RedditFlair.subreddit_name)
 
-def clear_flair_templates(client):
+    headers = get_auth_header(redditclient)
 
-    url = base_url + '[/r/{}]/api/clearflairtemplates'.format(client.RedditFlair.subreddit_name)
+    data = redditclient.RedditFlair.generate_body()
 
-    headers = get_auth_header(client)
-
-    data = client.RedditFlair.generate_body()
-
-    request = requests.post(url,headers=headers,body=data)
+    request = requests.post(url, headers=headers, body=data)
 
     pprint(request)
 
 
+def delete_flair(redditclient):
+    url = base_url + '[/r/{}]/api/deleteflair'.format(redditclient.RedditFlair.subreddit_name)
 
-def delete_flair(client):
+    headers = get_auth_header(redditclient)
 
-    url = base_url + '[/r/{}]/api/deleteflair'.format(client.RedditFlair.subreddit_name)
+    data = redditclient.RedditFlair.generate_body()
 
-    headers = get_auth_header(client)
-
-    data = client.RedditFlair.generate_body()
-
-    request = requests.post(url,headers=headers,body=data)
+    request = requests.post(url, headers=headers, body=data)
 
     pprint(request)
 
 
-def delete_flair_template(client):
+def delete_flair_template(redditclient):
+    url = base_url + '[/r/{}]/api/deleteflairtemplate'.format(redditclient.RedditFlair.subreddit_name)
 
-    url = base_url + '[/r/{}]/api/deleteflairtemplate'.format(client.RedditFlair.subreddit_name)
+    headers = get_auth_header(redditclient)
 
-    headers = get_auth_header(client)
+    data = redditclient.RedditFlair.generate_body()
 
-    data = client.RedditFlair.generate_body()
-
-    request = requests.post(url,headers=headers,body=data)
-
-def get_flair(client):
-
-    url = base_url + '[/r/{}]/api/flair'.format(client.RedditFlair.subreddit_name)
-
-    headers = get_auth_header(client)
-
-    data = client.RedditFlair.generate_body()
-
-    request = requests.post(url,headers = headers,body=data)
+    request = requests.post(url, headers=headers, body=data)
 
     pprint(request)
 
 
-def update_flair_template_order(client):
+def get_flair(redditclient):
+    url = base_url + '[/r/{}]/api/flair'.format(redditclient.RedditFlair.subreddit_name)
 
-    url = base_url + '[/r/{}]/api/flair_template_order'.format(client.RedditFlair.subreddit_name)
+    headers = get_auth_header(redditclient)
 
-    headers = get_auth_header(client)
+    data = redditclient.RedditFlair.generate_body()
 
-    data = client.RedditFlair.generate_body()
-
-    request = requests.patch(url,body=data,headers=headers)
-
-    pprint(request)
-
-
-def update_flair_config(client):
-
-    url = base_url + '[/r/{}]/api/flairconfig'.format(client.RedditFlair.subreddit_name)
-
-    headers = get_auth_header(client)
-
-    data = client.RedditFlair.generate_body()
-
-    request = requests.post(url,body=data,headers=headers)
-
-    pprint(request)
-
-def flair_config_users(client):
-
-    url = base_url + '[/r/{}]/api/flaircsv'.format(client.RedditFlair.subreddit_name)
-
-    headers = get_auth_header(client)
-
-    data = client.RedditFlair.generate_body()
-
-    request = requests.post(url,body=data,headers=headers)
-
-    pprint(request)
-
-def flair_list(client):
-
-    url = base_url + '[/r/{}]/api/flairlist'.format(client.RedditFlair.subreddit_name)
-
-    headers = get_auth_header(client)
-
-    data = client.RedditFlair.generate_body()
-
-    request = requests.get(url,headers=headers,body=data)
+    request = requests.post(url, headers=headers, body=data)
 
     pprint(request)
 
 
-def flair_selector(client):
+def update_flair_template_order(redditclient):
+    url = base_url + '[/r/{}]/api/flair_template_order'.format(redditclient.RedditFlair.subreddit_name)
 
-    url = base_url + '[/r/{}]/api/flairselector'.format(client.RedditFlair.subreddit_name)
+    headers = get_auth_header(redditclient)
 
-    headers = get_auth_header(client)
+    data = redditclient.RedditFlair.generate_body()
 
-    data = client.RedditFlair.generate_body()
-
-    request = requests.post(url,headers=headers,body=data)
-
-    pprint(request)
-
-def flair_template(client):
-
-    url = base_url + '[/r/{}]/api/flairtemplate'.format(client.RedditFlair.subreddit_name)
-
-    headers = get_auth_header(client)
-
-    data = client.RedditFlair.generate_body()
-
-    request = requests.post(url,headers=headers,body=data)
-
-    pprint(request)
-
-def flair_template_v2(client):
-
-    url = base_url + '[/r/{}]/api/flairtemplate_v2'.format(client.RedditFlair.subreddit_name)
-
-    headers = get_auth_header(client)
-
-    data = client.RedditFlair.generate_body()
-
-    request = requests.post(url,headers=headers,body=data)
+    request = requests.patch(url, body=data, headers=headers)
 
     pprint(request)
 
 
-def link_flair(client):
+def update_flair_config(redditclient):
+    url = base_url + '[/r/{}]/api/flairconfig'.format(redditclient.RedditFlair.subreddit_name)
 
-    url = base_url + '[/r/{}]/api/link_flair'.format(client.RedditFlair.subreddit_name)
+    headers = get_auth_header(redditclient)
 
-    headers = get_auth_header(client)
+    data = redditclient.RedditFlair.generate_body()
 
-
-    request = requests.get(url,headers=headers)
-
-    pprint(request)
-
-
-def link_flair_v2(client):
-
-    url = base_url + '[/r/{}]/api/link_flair_v2'.format(client.RedditFlair.subreddit_name)
-
-    headers = get_auth_header(client)
-
-    request = requests.get(url,headers=headers)
-
-    pprint(request)
-
-def select_flair(client):
-
-    url = base_url + '[/r/{}]/api/selectflair'.format(client.RedditFlair.subreddit_name)
-
-    headers = get_auth_header(client)
-
-    body = client.RedditFlair.generate_body()
-
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, body=data, headers=headers)
 
     pprint(request)
 
 
-def set_flair_enabled(client):
+def flair_config_users(redditclient):
+    url = base_url + '[/r/{}]/api/flaircsv'.format(redditclient.RedditFlair.subreddit_name)
 
-    url = base_url + '[/r/{}]/api/setflairenabled'.format(client.RedditFlair.subreddit_name)
+    headers = get_auth_header(redditclient)
 
-    headers = get_auth_header(client)
+    data = redditclient.RedditFlair.generate_body()
 
-    body = client.RedditFlair.generate_body()
+    request = requests.post(url, body=data, headers=headers)
 
-    request = requests.post(url,headers=headers,body=body)
+    pprint(request)
+
+
+def flair_list(redditclient):
+    url = base_url + '[/r/{}]/api/flairlist'.format(redditclient.RedditFlair.subreddit_name)
+
+    headers = get_auth_header(redditclient)
+
+    data = redditclient.RedditFlair.generate_body()
+
+    request = requests.get(url, headers=headers, body=data)
 
     pprint(request)
 
 
-def user_flair(client):
+def flair_selector(redditclient):
+    url = base_url + '[/r/{}]/api/flairselector'.format(redditclient.RedditFlair.subreddit_name)
 
-    url = base_url + '[/r/{}]/api/user_flair'.format(client.RedditFlair.subreddit_name)
+    headers = get_auth_header(redditclient)
 
-    headers = get_auth_header(client)
+    data = redditclient.RedditFlair.generate_body()
 
-    request = requests.get(url,headers=headers)
+    request = requests.post(url, headers=headers, body=data)
 
     pprint(request)
 
-def user_flair_v2(client):
 
-    url = base_url + '[/r/{}]/api/user_flair_v2'.format(client.RedditFlair.subreddit_name)
+def flair_template(redditclient):
+    url = base_url + '[/r/{}]/api/flairtemplate'.format(redditclient.RedditFlair.subreddit_name)
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    request = requests.get(url,headers=headers)
+    data = redditclient.RedditFlair.generate_body()
+
+    request = requests.post(url, headers=headers, body=data)
+
+    pprint(request)
+
+
+def flair_template_v2(redditclient):
+    url = base_url + '[/r/{}]/api/flairtemplate_v2'.format(redditclient.RedditFlair.subreddit_name)
+
+    headers = get_auth_header(redditclient)
+
+    data = redditclient.RedditFlair.generate_body()
+
+    request = requests.post(url, headers=headers, body=data)
+
+    pprint(request)
+
+
+def link_flair(redditclient):
+    url = base_url + '[/r/{}]/api/link_flair'.format(redditclient.RedditFlair.subreddit_name)
+
+    headers = get_auth_header(redditclient)
+
+    request = requests.get(url, headers=headers)
+
+    pprint(request)
+
+
+def link_flair_v2(redditclient):
+    url = base_url + '[/r/{}]/api/link_flair_v2'.format(redditclient.RedditFlair.subreddit_name)
+
+    headers = get_auth_header(redditclient)
+
+    request = requests.get(url, headers=headers)
+
+    pprint(request)
+
+
+def select_flair(redditclient):
+    url = base_url + '[/r/{}]/api/selectflair'.format(redditclient.RedditFlair.subreddit_name)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditFlair.generate_body()
+
+    request = requests.post(url, headers=headers, body=body)
+
+    pprint(request)
+
+
+def set_flair_enabled(redditclient):
+    url = base_url + '[/r/{}]/api/setflairenabled'.format(redditclient.RedditFlair.subreddit_name)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditFlair.generate_body()
+
+    request = requests.post(url, headers=headers, body=body)
+
+    pprint(request)
+
+
+def user_flair(redditclient):
+    url = base_url + '[/r/{}]/api/user_flair'.format(redditclient.RedditFlair.subreddit_name)
+
+    headers = get_auth_header(redditclient)
+
+    request = requests.get(url, headers=headers)
+
+    pprint(request)
+
+
+def user_flair_v2(redditclient):
+    url = base_url + '[/r/{}]/api/user_flair_v2'.format(redditclient.RedditFlair.subreddit_name)
+
+    headers = get_auth_header(redditclient)
+
+    request = requests.get(url, headers=headers)
 
     pprint(request)
 
@@ -690,29 +657,26 @@ def user_flair_v2(client):
 ###############
 
 
-def gold_fullname(client):
+def gold_fullname(redditclient):
+    url = base_url + '/api/v1/gold/gild/{}'.format(redditclient.RedditGold.full_name)
 
+    headers = get_auth_header(redditclient)
 
-    url = base_url + '/api/v1/gold/gild/{}'.format(client.RedditGold.full_name)
+    body = redditclient.RedditGold.generate_body()
 
-    headers = get_auth_header(client)
-
-    body = client.RedditGold.generate_body()
-
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
 
-def gold_username(client):
+def gold_username(redditclient):
+    url = base_url + '/api/v1/gold/give/{}'.format(redditclient.RedditGold.username)
 
-    url = base_url + '/api/v1/gold/give/{}'.format(client.RedditGold.username)
+    headers = get_auth_header(redditclient)
 
-    headers = get_auth_header(client)
+    body = redditclient.RedditGold.generate_body()
 
-    body = client.RedditGold.generate_body()
-
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
@@ -721,386 +685,346 @@ def gold_username(client):
 # LINKS & COMMENTS
 ###################
 
-def submit_comment(client):
-
+def submit_comment(redditclient):
     url = base_url + '/api/comment'
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    body = client.RedditLinkComment.generate_body()
+    body = redditclient.RedditLinkComment.generate_body()
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
 
-def delete_link_or_comment(client):
-
+def delete_link_or_comment(redditclient):
     url = base_url + '/api/del'
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    body = client.RedditLinkComment.generate_body()
+    body = redditclient.RedditLinkComment.generate_body()
 
-    request = requests.delete(url,headers=headers,body=body)
+    request = requests.delete(url, headers=headers, body=body)
 
     pprint(request)
 
-def edit_comment_text(client):
 
+def edit_comment_text(redditclient):
     url = base_url + "/api/editusertext"
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    body = client.RedditLinkComment.generate_body()
+    body = redditclient.RedditLinkComment.generate_body()
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
-def add_or_modify_event_times(client):
 
+def add_or_modify_event_times(redditclient):
     url = base_url + '/api/event_post_time'
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    body = client.RedditLinkComment.generate_body()
+    body = redditclient.RedditLinkComment.generate_body()
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
 
-def follow_post(client):
-
+def follow_post(redditclient):
     url = base_url + '/api/follow_post'
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    body = client.RedditLinkComment.generate_body()
+    body = redditclient.RedditLinkComment.generate_body()
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
-def hide_link(client):
 
+def hide_link(redditclient):
     url = base_url + '/api/hide'
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    body = client.RedditLinkComment.generate_body()
+    body = redditclient.RedditLinkComment.generate_body()
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
-def comment_link_info(client):
 
+def comment_link_info(redditclient):
     url = base_url + '[/r/{}]/api/info'
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    body = client.RedditLinkComment.generate_body()
+    body = redditclient.RedditLinkComment.generate_body()
 
-    request = requests.get(url,headers=headers,body=body)
+    request = requests.get(url, headers=headers, body=body)
 
     pprint(request)
 
-def lock_comment(client):
 
+def lock_comment(redditclient):
     url = base_url + '/api/lock'
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    body = client.RedditLinkComment.generate_body()
+    body = redditclient.RedditLinkComment.generate_body()
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
 
-def mark_link_nsfw(client):
-
+def mark_link_nsfw(redditclient):
     url = base_url + '/api/marknsfw'
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    body = client.RedditLinkComment.generate_body()
+    body = redditclient.RedditLinkComment.generate_body()
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
-def retrieve_additional_comments(client):
 
+def retrieve_additional_comments(redditclient):
     url = base_url + '/api/morechildren'
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    body = client.RedditLinkComment.generate_body()
+    body = redditclient.RedditLinkComment.generate_body()
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
-def report_link(client):
 
+def report_link(redditclient):
     url = base_url + '/api/report'
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    body = client.RedditLinkComment.generate_body()
+    body = redditclient.RedditLinkComment.generate_body()
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
 
-def report_award(client):
-
+def report_award(redditclient):
     url = base_url + '/api/report_award'
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    body = client.RedditLinkComment.generate_body()
+    body = redditclient.RedditLinkComment.generate_body()
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
-def save_link_or_comment(client):
 
+def save_link_or_comment(redditclient):
     url = base_url + '/api/save'
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    body = client.RedditLinkComment.generate_body()
+    body = redditclient.RedditLinkComment.generate_body()
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
-def get_list_saved_categories(client):
 
+def get_list_saved_categories(redditclient):
     url = base_url + '/api/saved_categories'
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    body = client.RedditLinkComment.generate_body()
+    body = redditclient.RedditLinkComment.generate_body()
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
-def enable_disable_replies_link_or_comment(client):
 
+def enable_disable_replies_link_or_comment(redditclient):
     url = base_url + '/api/sendreplies'
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    body = client.RedditLinkComment.generate_body()
+    body = redditclient.RedditLinkComment.generate_body()
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
-def set_unset_contestmode_link(client):
 
+def set_unset_contestmode_link(redditclient):
     url = base_url + '/api/set_contest_mode'
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    body = client.RedditLinkComment.generate_body()
+    body = redditclient.RedditLinkComment.generate_body()
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
 
-def set_link_sticky(client):
-
+def set_link_sticky(redditclient):
     url = base_url + '/api/set_subreddit_sticky'
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    body = client.RedditLinkComment.generate_body()
+    body = redditclient.RedditLinkComment.generate_body()
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
-def set_link_suggested_sort(client):
 
+def set_link_suggested_sort(redditclient):
     url = base_url + '/api/set_suggested/sort'
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    body = client.RedditLinkComment.generate_body()
+    body = redditclient.RedditLinkComment.generate_body()
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
-def link_spoiler(client):
 
+def link_spoiler(redditredditclient):
     url = base_url + '/api/spoiler'
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditredditclient)
 
-    body = client.RedditLinkComment.generate_body()
+    body = redditredditclient.RedditLinkComment.generate_body()
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
 
-def link_store_visits(client):
-
+def link_store_visits(redditclient):
     # requires Reddit Premium
 
     url = base_url + '/api/store_visits'
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    body = client.RedditLinkComment.generate_body()
+    body = redditclient.RedditLinkComment.generate_body()
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
 
-def submit_link(client):
-
+def submit_link(redditclient):
     url = base_url + '/api/submit'
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    body = client.RedditLinkComment.generate_body()
+    body = redditclient.RedditLinkComment.generate_body()
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
-def unhide_link(client):
 
+def unhide_link(redditclient):
     url = base_url + '/api/unhide'
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    body = client.RedditLinkComment.generate_body()
+    body = redditclient.RedditLinkComment.generate_body()
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
-def unlock_link(client):
 
+def unlock_link(redditclient):
     url = base_url + '/api/unlock'
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    body = client.RedditLinkComment.generate_body()
+    body = redditclient.RedditLinkComment.generate_body()
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
 
-def unmark_link_nsfw(client):
-
+def unmark_link_nsfw(redditclient):
     url = base_url + '/api/unmarknsfw'
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    body = client.RedditLinkComment.generate_body()
+    body = redditclient.RedditLinkComment.generate_body()
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
-def unsave_link_or_comment(client):
 
+def unsave_link_or_comment(redditclient):
     url = base_url + '/api/unsave'
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    body = client.RedditLinkComment.generate_body()
+    body = redditclient.RedditLinkComment.generate_body()
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
 
-def unspoil_link(client):
-
+def unspoil_link(redditclient):
     url = base_url + '/api/unspoiler'
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    body = client.RedditLinkComment.generate_body()
+    body = redditclient.RedditLinkComment.generate_body()
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
-def vote_link(client):
 
+def vote_link(redditclient):
     url = base_url + '/api/vote'
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
-    body = client.RedditLinkComment.generate_body()
+    body = redditclient.RedditLinkComment.generate_body()
 
-    request = requests.post(url,headers=headers,body=body)
+    request = requests.post(url, headers=headers, body=body)
 
     pprint(request)
 
 
+##################
+## LISTING API
+##################
 
 
+def list_of_trending_subreddits(redditclient):
 
+    url = base_url + '/api/trending_subreddits'
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    headers = get_auth_header(redditclient)
 
 
 
 if __name__ == '__main__':
-
     client = RedditClient()
     client.add_scope('identity')
     client.add_scope('edit')
@@ -1124,8 +1048,3 @@ if __name__ == '__main__':
     implicit_grant_flow(client)
     get_user_identitiy(client)
     get_user_karma(client)
-    
-    
-
-    
-
