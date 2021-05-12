@@ -39,6 +39,20 @@ class RedditLinkComment(RedditClient):
         self.to_profile = None
         self.links = []
 
+        self.ad = None
+        self.app = None
+        self.collection_id = None
+        self.extension = None
+        self.flair_id = None
+        self.flair_text = None
+        self.g_recaptcha_response = None
+        self.kind = None
+        self.nsfw = None
+        self.resubmit = None
+        self.send_replies = None
+        self.spoiler = None
+        self.sr = None
+
     def generate_body(self):
         body = {}
         if self.api_type != None:

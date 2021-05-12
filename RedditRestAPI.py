@@ -970,6 +970,45 @@ def link_store_visits(client):
     pprint(request)
 
 
+def submit_link(client):
+
+    url = base_url + '/api/submit'
+
+    headers = get_auth_header(client)
+
+    body = client.RedditLinkComment.generate_body()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+def unhide_link(client):
+
+    url = base_url + '/api/unhide'
+
+    headers = get_auth_header(client)
+
+    body = client.RedditLinkComment.generate_body()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+def unlock_link(client):
+
+    url = base_url + '/api/unlock'
+
+    headers = get_auth_header(client)
+
+    body = client.RedditLinkComment.generate_body()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+
+
 
 
 
