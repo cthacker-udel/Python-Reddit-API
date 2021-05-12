@@ -1007,6 +1007,21 @@ def unlock_link(client):
     pprint(request)
 
 
+def unmark_link_nsfw(client):
+
+    url = base_url + '/api/unmarknsfw'
+
+    headers = get_auth_header(client)
+
+    body = client.RedditLinkComment.generate_body()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+
+
 
 
 
