@@ -38,7 +38,6 @@ class RedditLinkComment(RedditClient):
         self.num = None
         self.to_profile = None
         self.links = []
-
         self.ad = None
         self.app = None
         self.collection_id = None
@@ -52,6 +51,8 @@ class RedditLinkComment(RedditClient):
         self.send_replies = None
         self.spoiler = None
         self.sr = None
+        self.dir = None
+        self.rank = None
 
     def generate_body(self):
         body = {}
@@ -121,6 +122,10 @@ class RedditLinkComment(RedditClient):
             body['to_profile'] = self.to_profile
         if len(self.links) > 0:
             body['links'] = ','.join(self.links)
+        if self.dir != None:
+            body['dir'] = self.dir
+        if self.rank != None:
+            body['rank'] = self.rank
         return body
 
 
@@ -154,3 +159,16 @@ class RedditLinkComment(RedditClient):
         self.num = None
         self.to_profile = None
         self.links = []
+        self.ad = None
+        self.app = None
+        self.collection_id = None
+        self.extension = None
+        self.flair_id = None
+        self.flair_text = None
+        self.g_recaptcha_response = None
+        self.kind = None
+        self.nsfw = None
+        self.resubmit = None
+        self.send_replies = None
+        self.spoiler = None
+        self.sr = None

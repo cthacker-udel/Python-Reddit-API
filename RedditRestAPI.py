@@ -1044,6 +1044,18 @@ def unspoil_link(client):
 
     pprint(request)
 
+def vote_link(client):
+
+    url = base_url + '/api/vote'
+
+    headers = get_auth_header(client)
+
+    body = client.RedditLinkComment.generate_body()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
 
 
 
