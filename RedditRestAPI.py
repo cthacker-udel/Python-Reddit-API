@@ -1105,13 +1105,27 @@ def get_random_listing(redditclient):
 
     url = base_url + '[/r/{}]/random'.format(redditclient.RedditListing.get_subreddit_name())
 
-    headers = get_auth_header(client)
+    headers = get_auth_header(redditclient)
 
     body = redditclient.RedditListing.generate_queries()
 
     request = requests.get(url,headers=headers,body=body)
 
     pprint(request)
+
+def get_rising_listing(redditclient):
+
+    url = base_url + '[/r/{}]/rising'.format(redditclient.RedditListing.get_subreddit_name())
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditListing.generate_queries()
+
+    request = requests.get(url,headers=headers,body=body)
+
+    pprint(request)
+
+
 
 
 
