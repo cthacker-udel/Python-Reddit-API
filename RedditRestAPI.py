@@ -1126,6 +1126,19 @@ def get_rising_listing(redditclient):
     pprint(request)
 
 
+def get_sorted_listing(redditclient):
+
+    url = base_url + '[/r/{}]/sort'.format(redditclient.RedditListing.get_subreddit_name())
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditListing.generate_queries()
+
+    request = requests.get(url,headers=headers,body=body)
+
+    pprint(request)
+
+
 
 
 
