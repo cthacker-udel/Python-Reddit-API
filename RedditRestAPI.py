@@ -1022,6 +1022,25 @@ def list_of_trending_subreddits(redditclient):
 
     headers = get_auth_header(redditclient)
 
+    request = requests.get(url,headers=headers)
+
+    pprint(request)
+
+
+def get_best_listing(redditclient):
+
+    url = base_url + '/best'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditListing.generate_queries()
+
+    request = requests.get(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+
 
 
 if __name__ == '__main__':
