@@ -1051,6 +1051,18 @@ def get_listing_by_id(redditclient):
 
     pprint(request)
 
+def get_comment_tree_for_given_link(redditclient):
+
+    url = base_url + '[/r/{}]/comments/article'.format(redditclient.RedditListing.get_subreddit_name())
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditListing.generate_queries()
+
+    request = requests.get(url,headers=headers,body=body)
+
+    pprint(request)
+
 
 
 
