@@ -11,6 +11,7 @@ class RedditListing(RedditClient):
         self.limit = None
         self.show = None
         self.sr_detail = None
+        self.names = []
 
 
     def generate_queries(self):
@@ -27,6 +28,8 @@ class RedditListing(RedditClient):
             body['show'] = self.show
         if self.sr_detail != None:
             body['sr_detail'] = self.sr_detail
+        if len(self.names) > 0:
+            body['names'] = ','.join(self.names)
         return body
 
     def clear_queries(self):
@@ -36,3 +39,4 @@ class RedditListing(RedditClient):
         self.limit = None
         self.show = None
         self.sr_detail = None
+        self.names = []

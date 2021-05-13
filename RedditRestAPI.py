@@ -1039,6 +1039,20 @@ def get_best_listing(redditclient):
 
     pprint(request)
 
+def get_listing_by_id(redditclient):
+
+    url = base_url + '/by_id/names'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditListing.generate_queries()
+
+    request = requests.get(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+
 
 
 
