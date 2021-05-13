@@ -28,6 +28,10 @@ class RedditListing(RedditClient):
         self.threaded = None
         self.truncate = None
 
+        self.crossposts_only = None
+        self.sr = None
+
+
 
     def generate_queries(self):
         body = []
@@ -69,6 +73,10 @@ class RedditListing(RedditClient):
             body['threaded'] = self.threaded
         if self.truncate != None:
             body['truncate'] = self.truncate
+        if self.crossposts_only != None:
+            body['crossports_only'] = self.crossposts_only
+        if self.sr != None:
+            body['sr'] = self.sr
         return body
 
     def clear_queries(self):
@@ -92,6 +100,8 @@ class RedditListing(RedditClient):
         self.theme = None
         self.threaded = None
         self.truncate = None
+        self.crossposts_only = None
+        self.sr = None
 
 
     def get_subreddit_name(self):

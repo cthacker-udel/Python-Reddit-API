@@ -1063,6 +1063,56 @@ def get_comment_tree_for_given_link(redditclient):
 
     pprint(request)
 
+def list_of_submissions_for_url(redditclient):
+
+    url = base_url + '/duplicates/article'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditListing.generate_queries()
+
+    request = requests.get(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+def get_hot_list(redditclient):
+
+    url = base_url + '[/r/{}]/hot'.format(redditclient.RedditListing.get_subreddit_name())
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditListing.generate_queries()
+
+    request = requests.get(url,headers=headers,body=body)
+
+    pprint(request)
+
+def get_new_listing(redditclient):
+
+    url = base_url + '[/r/{}]/new'.format(redditclient.RedditListing.get_subreddit_name())
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditListing.generate_queries()
+
+    request = requests.get(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+def get_random_listing(redditclient):
+
+    url = base_url + '[/r/{}]/random'.format(redditclient.RedditListing.get_subreddit_name())
+
+    headers = get_auth_header(client)
+
+    body = redditclient.RedditListing.generate_queries()
+
+    request = requests.get(url,headers=headers,body=body)
+
+    pprint(request)
+
 
 
 
