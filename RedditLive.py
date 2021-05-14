@@ -12,6 +12,10 @@ class RedditLive(RedditClient):
         self.title = None
         self.uh_x_modhash_header = None
         self.thread_name = None
+        self.link = None
+        self.user_name = None
+        self.permissions = None
+        self.type = None
 
 
 
@@ -32,6 +36,14 @@ class RedditLive(RedditClient):
             body['title'] = self.title
         if self.uh_x_modhash_header != None:
             body['uh / X-Modhash header'] = self.uh_x_modhash_header
+        if self.link != None:
+            body['link'] = self.link
+        if self.user_name != None:
+            body['name'] = self.user_name
+        if self.permissions != None:
+            body['permissions'] = self.permissions
+        if self.type != None:
+            body['type'] = self.type
         return body
 
 
@@ -40,3 +52,14 @@ class RedditLive(RedditClient):
 
     def clear_queries(self):
         self.names = []
+        self.api_type = None
+        self.description = None
+        self.nsfw = None
+        self.resources = None
+        self.title = None
+        self.uh_x_modhash_header = None
+        self.thread_name = None
+        self.link = None
+        self.user_name = None
+        self.permissions = None
+        self.type = None

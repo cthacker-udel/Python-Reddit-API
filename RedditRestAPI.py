@@ -1268,6 +1268,57 @@ def edit_thread(redditclient):
 
     pprint(request)
 
+def hide_discussion(redditclient):
+
+    url = base_url + '/api/live/{}/hide_discussion'.format(redditclient.RedditLive.get_thread_name())
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditLive.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+def invite_contributor(redditclient):
+
+    url = base_url + '/api/live/{}/invite_contributor'.format(redditclient.RedditLive.get_thread_name())
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditLive.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+def leave_contributor(redditclient):
+
+    url = base_url + '/api/live/{}/leave_contributor'.format(redditclient.RedditLive.get_thread_name())
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditLive.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+def report_thread(redditclient):
+
+    url = base_url + '/api/live/{}/report'.format(redditclient.RedditLive.get_thread_name())
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditLive.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+
 
 
 
