@@ -256,7 +256,7 @@ def fetch_collection(redditclient):
 
     headers = get_auth_header(redditclient)
 
-    request = requests.get(url, headers=headers, body=body)
+    request = requests.get(url, headers=headers, params=body)
 
     pprint(request)
 
@@ -340,7 +340,7 @@ def fetch_subreddit_collections(redditclient):
 
     headers = get_auth_header(redditclient)
 
-    request = requests.get(url, headers=headers, body=body)
+    request = requests.get(url, headers=headers, params=body)
 
     pprint(request)
 
@@ -547,7 +547,7 @@ def flair_list(redditclient):
 
     data = redditclient.RedditFlair.generate_body()
 
-    request = requests.get(url, headers=headers, body=data)
+    request = requests.get(url, headers=headers, params=data)
 
     pprint(request)
 
@@ -764,7 +764,7 @@ def comment_link_info(redditclient):
 
     body = redditclient.RedditLinkComment.generate_body()
 
-    request = requests.get(url, headers=headers, body=body)
+    request = requests.get(url, headers=headers, params=body)
 
     pprint(request)
 
@@ -1035,7 +1035,7 @@ def get_best_listing(redditclient):
 
     body = redditclient.RedditListing.generate_queries()
 
-    request = requests.get(url,headers=headers,body=body)
+    request = requests.get(url,headers=headers,params=body)
 
     pprint(request)
 
@@ -1047,7 +1047,7 @@ def get_listing_by_id(redditclient):
 
     body = redditclient.RedditListing.generate_queries()
 
-    request = requests.get(url,headers=headers,body=body)
+    request = requests.get(url,headers=headers,params=body)
 
     pprint(request)
 
@@ -1059,7 +1059,7 @@ def get_comment_tree_for_given_link(redditclient):
 
     body = redditclient.RedditListing.generate_queries()
 
-    request = requests.get(url,headers=headers,body=body)
+    request = requests.get(url,headers=headers,params=body)
 
     pprint(request)
 
@@ -1071,7 +1071,7 @@ def list_of_submissions_for_url(redditclient):
 
     body = redditclient.RedditListing.generate_queries()
 
-    request = requests.get(url,headers=headers,body=body)
+    request = requests.get(url,headers=headers,params=body)
 
     pprint(request)
 
@@ -1084,7 +1084,7 @@ def get_hot_list(redditclient):
 
     body = redditclient.RedditListing.generate_queries()
 
-    request = requests.get(url,headers=headers,body=body)
+    request = requests.get(url,headers=headers,params=body)
 
     pprint(request)
 
@@ -1096,7 +1096,7 @@ def get_new_listing(redditclient):
 
     body = redditclient.RedditListing.generate_queries()
 
-    request = requests.get(url,headers=headers,body=body)
+    request = requests.get(url,headers=headers,params=body)
 
     pprint(request)
 
@@ -1109,7 +1109,7 @@ def get_random_listing(redditclient):
 
     body = redditclient.RedditListing.generate_queries()
 
-    request = requests.get(url,headers=headers,body=body)
+    request = requests.get(url,headers=headers,params=body)
 
     pprint(request)
 
@@ -1121,7 +1121,7 @@ def get_rising_listing(redditclient):
 
     body = redditclient.RedditListing.generate_queries()
 
-    request = requests.get(url,headers=headers,body=body)
+    request = requests.get(url,headers=headers,params=body)
 
     pprint(request)
 
@@ -1134,9 +1134,42 @@ def get_sorted_listing(redditclient):
 
     body = redditclient.RedditListing.generate_queries()
 
-    request = requests.get(url,headers=headers,body=body)
+    request = requests.get(url,headers=headers,params=body)
 
     pprint(request)
+
+def get_top_listing(redditclient):
+
+    url = base_url + '[/r/{}]/top'.format(redditclient.RedditListing.get_subreddit_name())
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditListing.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+
+def get_controversial_listing(redditclient):
+
+    url = base_url + '[/r/{}]/controversial'.format(redditclient.RedditListing.get_subreddit_name())
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditListing.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+
+#######################
+# LIVE THREADS METHODS
+#######################
+
+
+
 
 
 
