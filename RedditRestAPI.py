@@ -1168,6 +1168,30 @@ def get_controversial_listing(redditclient):
 # LIVE THREADS METHODS
 #######################
 
+def get_websocket_url(redditclient):
+
+    url = base_url + '/live/thread/about.json'
+
+    headers = get_auth_header(redditclient)
+
+    request = requests.get(url,headers=headers)
+
+    pprint(request)
+
+
+def get_listing_live_events(redditclient):
+
+    url = base_url + '/api/live/by_id/names'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditLive.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body,stream=True)
+
+    for data in request.iter_lines():
+        print(data)
+
 
 
 
