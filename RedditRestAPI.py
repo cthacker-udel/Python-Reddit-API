@@ -1205,7 +1205,7 @@ def create_live_event(redditclient):
 
     pprint(request)
 
-def get_current_live_thread(redditclient):
+def live_happening_now(redditclient):
 
     url = base_url + '/api/live/happening_now'
 
@@ -1215,8 +1215,58 @@ def get_current_live_thread(redditclient):
 
     request = requests.get(url,headers=headers,params=body,stream=True)
 
-    for data in request.iter_lines():
-        pprint(data)
+    pprint(request)
+
+def accept_contributor_invite(redditclient):
+
+    url = base_url + '/api/live/{}/accept_contributor_invite'.format(redditclient.RedditLive.get_thread_name())
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditLive.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+def close_thread(redditclient):
+
+    url = base_url + '/api/live/{}/close_thread'.format(redditclient.RedditLive.get_thread_name())
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditLive.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+def delete_update(redditclient):
+
+    url = base_url + '/api/live/{}/edit'.format(redditclient.RedditLive.get_thread_name())
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditLive.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+def edit_thread(redditclient):
+
+    url = base_url + '/api/live/{}/edit'.format(redditclient.RedditLive.get_thread_name())
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditLive.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
 
 
 
