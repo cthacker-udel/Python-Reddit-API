@@ -1193,6 +1193,19 @@ def get_listing_live_events(redditclient):
         print(data)
 
 
+def create_live_event(redditclient):
+
+    url = base_url + '/api/live/create'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditLive.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
 
 
 
