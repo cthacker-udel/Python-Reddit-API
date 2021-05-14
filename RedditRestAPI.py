@@ -1205,6 +1205,21 @@ def create_live_event(redditclient):
 
     pprint(request)
 
+def get_current_live_thread(redditclient):
+
+    url = base_url + '/api/live/happening_now'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditLive.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body,stream=True)
+
+    for data in request.iter_lines():
+        pprint(data)
+
+
+
 
 
 

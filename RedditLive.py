@@ -11,6 +11,7 @@ class RedditLive(RedditClient):
         self.resources = None
         self.title = None
         self.uh_x_modhash_header = None
+        self.show_announcements = None
 
 
 
@@ -31,6 +32,8 @@ class RedditLive(RedditClient):
             body['title'] = self.title
         if self.uh_x_modhash_header != None:
             body['uh / X-Modhash header'] = self.uh_x_modhash_header
+        if self.show_announcements != None:
+            body['show_announcements'] = self.show_announcements
         return body
 
     def clear_queries(self):
