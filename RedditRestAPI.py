@@ -1367,6 +1367,43 @@ def strike_listing_update(redditclient):
 
     pprint(request)
 
+def unhide_comment_or_link(redditclient):
+
+    url = base_url + '/api/live/{}/unhide_discussion'.format(redditclient.RedditLive.get_thread_name())
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditLive.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+def update_thread(redditclient):
+
+    url = base_url + '/api/live/{}/update'.format(redditclient.RedditLive.get_thread_name())
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditLive.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+def get_list_of_updates(redditclient):
+
+    url = base_url + '/live/{}'.format(redditclient.RedditLive.get_thread_name())
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditLive.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
 
 
 
