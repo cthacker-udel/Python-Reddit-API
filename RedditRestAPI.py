@@ -1317,7 +1317,55 @@ def report_thread(redditclient):
 
     pprint(request)
 
+def revoke_contributor_permission(redditclient):
 
+    url = base_url + '/api/live/{}/rm_contributor'.format(redditclient.RedditLive.get_thread_name())
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditLive.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+def revoke_outstanding_contributor_invite(redditclient):
+
+    url = base_url + '/api/live/{}/rm_contributor_invite'.format(redditclient.RedditLive.get_thread_name())
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditLive.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+def set_contributor_permissions(redditclient):
+
+    url = base_url + '/api/live/{}/set_contributor_permissions'.format(redditclient.RedditLive.get_thread_name())
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditLive.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+def strike_listing_update(redditclient):
+
+    url = base_url + '/api/live/{}/strike_update'.format(redditclient.RedditLive.get_thread_name())
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditLive.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
 
 
 

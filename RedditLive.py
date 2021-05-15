@@ -16,6 +16,7 @@ class RedditLive(RedditClient):
         self.user_name = None
         self.permissions = None
         self.type = None
+        self.id = None
 
 
 
@@ -44,6 +45,8 @@ class RedditLive(RedditClient):
             body['permissions'] = self.permissions
         if self.type != None:
             body['type'] = self.type
+        if self.id != None:
+            body['id'] = self.id
         return body
 
 
@@ -63,3 +66,4 @@ class RedditLive(RedditClient):
         self.user_name = None
         self.permissions = None
         self.type = None
+        self.id = None
