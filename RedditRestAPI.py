@@ -1405,6 +1405,20 @@ def get_list_of_updates(redditclient):
     pprint(request)
 
 
+def get_live_thread_info(redditclient):
+
+    url = base_url + '/live/{}/about'.format(redditclient.RedditLive.get_thread_name())
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditLive.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+
 
 
 
