@@ -1615,6 +1615,42 @@ def get_message_sent(redditclient):
 
 
 
+###########
+# MISC API
+###########
+
+def save_media_relevant_media_links(redditclient):
+
+    url = base_url + '[/r/{}]/api/saved_media_text'.format(redditclient.RedditMisc.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditPrivate.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+
+def retrieve_descriptions_of_scopes(redditclient):
+
+    url = base_url + '/api/v1/scopes'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditPrivate.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+
+#################
+# MODERATION API
+#################
+
+
+
 
 
 
