@@ -1511,6 +1511,19 @@ def delete_message(redditclient):
     pprint(request)
 
 
+def read_all_messages(redditclient):
+
+    url = base_url + '/api/read_all_messages'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditPrivate.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
 
 
 
