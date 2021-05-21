@@ -1575,16 +1575,43 @@ def unread_message(redditclient):
 
     pprint(request)
 
+def get_message_where(redditclient):
+
+    url = base_url + '/message/{}'.format(redditclient.RedditPrivate.where)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditPrivate.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
 
 
+def get_message_inbox(redditclient):
+
+    url = base_url + '/message/inbox'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditPrivate.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
 
 
+def get_message_sent(redditclient):
 
+    url = base_url + '/message/sent'
 
+    headers = get_auth_header(redditclient)
 
+    body = redditclient.RedditPrivate.generate_queries()
 
+    request = requests.get(url,headers=headers,params=body)
 
-
+    pprint(request)
 
 
 
