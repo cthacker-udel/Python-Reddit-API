@@ -1537,6 +1537,47 @@ def read_message(redditclient):
     pprint(request)
 
 
+def unblock_subreddit(redditclient):
+
+    url = base_url + '/api/unblock_subreddit'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditPrivate.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+def uncollapse_message(redditclient):
+
+    url = base_url + '/api/uncollapse_message'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditPrivate.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+def unread_message(redditclient):
+
+    url = base_url + '/api/unread_message'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditPrivate.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+
+
 
 
 
