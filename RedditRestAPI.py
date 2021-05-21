@@ -1473,6 +1473,44 @@ def blocking_author(redditclient):
     pprint(request)
 
 
+def collapse_message(redditclient):
+
+    url = base_url + '/api/collapse-message'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditPrivate.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+def compose_message(redditclient):
+
+    url = base_url + '/api/compose'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditPrivate.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+def delete_message(redditclient):
+
+    url = base_url + '/api/del_msg'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditPrivate.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
 
 
 
