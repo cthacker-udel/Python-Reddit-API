@@ -1456,6 +1456,22 @@ def live_thread_details(redditclient):
 
     pprint(request)
 
+#######################
+# PRIVATE MESSAGES API
+#######################
+
+def blocking_author(redditclient):
+
+    url = base_url + '/api/block'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditPrivate.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
 
 
 
