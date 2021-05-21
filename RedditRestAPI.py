@@ -1418,6 +1418,48 @@ def get_live_thread_info(redditclient):
     pprint(request)
 
 
+def get_list_of_contributors(redditclient):
+
+    url = base_url + '/live/{}/contributors'.format(redditclient.RedditLive.get_thread_name())
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditLive.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+def get_list_of_thread_submissions(redditclient):
+
+    url = base_url + '/live/{}/discussions'.format(redditclient.RedditLive.get_thread_name())
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditLive.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+def live_thread_details(redditclient):
+
+    url = base_url + '/live/{}/updates/{}'.format(redditclient.RedditLive.get_thread_name(),redditclient.RedditLive.update_id)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditLive.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+
+
+
 
 
 

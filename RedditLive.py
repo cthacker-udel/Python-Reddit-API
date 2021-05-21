@@ -18,6 +18,15 @@ class RedditLive(RedditClient):
         self.type = None
         self.id = None
 
+        self.count = None
+        self.limit = None
+        self.show = None
+        self.sr_detail = None
+        self.after = None
+        self.before = None
+
+        self.update_id = None
+
 
 
 
@@ -47,6 +56,18 @@ class RedditLive(RedditClient):
             body['type'] = self.type
         if self.id != None:
             body['id'] = self.id
+        if self.count != None:
+            body['count'] = self.count
+        if self.after != None:
+            body['after'] = self.after
+        if self.before != None:
+            body['before'] = self.before
+        if self.limit != None:
+            body['limit'] = self.limit
+        if self.show != None:
+            body['show'] = self.show
+        if self.sr_detail != None:
+            body['sr_detail'] = self.sr_detail
         return body
 
 
@@ -67,3 +88,9 @@ class RedditLive(RedditClient):
         self.permissions = None
         self.type = None
         self.id = None
+        self.count = None
+        self.limit = None
+        self.show = None
+        self.sr_detail = None
+        self.after = None
+        self.before = None
