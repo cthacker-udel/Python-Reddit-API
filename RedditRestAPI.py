@@ -1724,20 +1724,17 @@ def get_unmoderated_action(redditclient):
 
     pprint(request)
 
+def get_edited_moderation_action(redditclient):
 
+    url = base_url + '[/r/{}]/about/edited'.format(redditclient.RedditModeration.subreddit)
 
+    headers = get_auth_header(redditclient)
 
+    body = redditclient.RedditModeration.generate_queries()
 
+    request = requests.get(url,headers=headers,params=body)
 
-
-
-
-
-
-
-
-
-
+    pprint(request)
 
 
 
