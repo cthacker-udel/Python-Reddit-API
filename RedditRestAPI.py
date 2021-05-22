@@ -1739,7 +1739,7 @@ def get_edited_moderation_action(redditclient):
 
 def accept_moderator_invite(redditclient):
 
-    url = base_url + '[/r/{}]/api/accept_moderator_invite'.format(redditClient.RedditModeration.subreddit)
+    url = base_url + '[/r/{}]/api/accept_moderator_invite'.format(redditclient.RedditModeration.subreddit)
 
     headers = get_auth_header(redditclient)
 
