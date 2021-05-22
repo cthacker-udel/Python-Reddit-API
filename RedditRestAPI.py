@@ -1712,6 +1712,19 @@ def get_modqueue_of_moderation_actions(redditclient):
 
     pprint(request)
 
+def get_unmoderated_action(redditclient):
+
+    url = base_url + '[/r/{}]/about/unmoderated'.format(redditclient.RedditModeration.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModeration.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+
 
 
 
