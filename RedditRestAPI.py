@@ -1745,7 +1745,20 @@ def accept_moderator_invite(redditclient):
 
     body = redditclient.RedditModeration.generate_queries()
 
-    request = requests.get(url,headers=headers,params=body)
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+def approve_link_or_comment(redditclient):
+
+    url = base_url + '/api/approve'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModeration.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
 
     pprint(request)
 
