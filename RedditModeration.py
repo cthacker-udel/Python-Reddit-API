@@ -13,6 +13,8 @@ class RedditModeration(RedditClient):
         self.sr_detail = None
         self.type = None
         self.subreddit = None
+        self.location = None
+        self.only = None
 
     def generate_queries(self):
         queries = {}
@@ -32,6 +34,8 @@ class RedditModeration(RedditClient):
             queries['sr_detail'] = self.sr_detail
         if self.type != None:
             queries['type'] = self.type
+        if self.only != None:
+            queries['only'] = self.only
         return queries
 
 

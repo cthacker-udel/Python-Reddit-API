@@ -1662,6 +1662,18 @@ def get_recent_moderation_actions(redditclient):
 
     pprint(request)
 
+def get_location_of_moderation_actions(redditclient):
+
+    url = base_url + '[/r/{}]/about/{}'.format(redditclient.RedditModeration.subreddit,redditclient.RedditModeration.location)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModeration.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
 
 
 
