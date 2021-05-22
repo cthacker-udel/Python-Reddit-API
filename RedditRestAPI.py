@@ -1737,6 +1737,19 @@ def get_edited_moderation_action(redditclient):
     pprint(request)
 
 
+def accept_moderator_invite(redditclient):
+
+    url = base_url + '[/r/{}]/api/accept_moderator_invite'.format(redditClient.RedditModeration.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModeration.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+
 
 
 if __name__ == '__main__':
