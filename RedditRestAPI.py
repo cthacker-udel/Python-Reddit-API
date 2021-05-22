@@ -1650,6 +1650,22 @@ def retrieve_descriptions_of_scopes(redditclient):
 #################
 
 
+def get_recent_moderation_actions(redditclient):
+
+    url = base_url + '[/r/{}]/about/log'.format(redditclient.RedditModeration.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModeration.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+
+
+
+
 
 
 
