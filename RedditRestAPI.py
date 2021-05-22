@@ -1863,6 +1863,25 @@ def redirect_subreddit_stylesheet(redditclient):
     pprint(request)
 
 
+
+##############
+# MODMAIL API
+##############
+
+
+def mark_all_thread_conversation(redditclient):
+
+    url = base_url + '/api/mode/bulk_read'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModmail.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
 if __name__ == '__main__':
     client = RedditClient()
     client.add_scope('identity')
