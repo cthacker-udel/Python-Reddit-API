@@ -1763,6 +1763,22 @@ def approve_link_or_comment(redditclient):
     pprint(request)
 
 
+def distinguish_author(redditclient):
+
+    url = base_url + '/api/distinguish'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModeration.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+
+
+
 
 
 if __name__ == '__main__':

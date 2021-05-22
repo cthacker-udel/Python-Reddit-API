@@ -15,6 +15,11 @@ class RedditModeration(RedditClient):
         self.subreddit = None
         self.location = None
         self.only = None
+        self.how = None
+        self.id = None
+        self.sticky = None
+        self.api_type = None
+        self.uh_x_modhash_header = None
 
     def generate_queries(self):
         queries = {}
@@ -36,6 +41,16 @@ class RedditModeration(RedditClient):
             queries['type'] = self.type
         if self.only != None:
             queries['only'] = self.only
+        if self.id != None:
+            queries['id'] = self.id
+        if self.sticky != None:
+            queries['sticky'] = self.sticky
+        if self.api_type != None:
+            queries['api_type'] = self.api_type
+        if self.how != None:
+            queries['how'] = self.how
+        if self.uh_x_modhash_header != None:
+            queries['uh / X-Modhash header'] = self.uh_x_modhash_header
         return queries
 
 
@@ -48,3 +63,8 @@ class RedditModeration(RedditClient):
         self.show = None
         self.sr_detail = None
         self.type = None
+        self.how = None
+        self.id = None
+        self.sticky = None
+        self.api_type = None
+        self.uh_x_modhash_header = None
