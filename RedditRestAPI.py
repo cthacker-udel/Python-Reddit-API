@@ -1788,7 +1788,17 @@ def ignore_reports(redditclient):
 
     pprint(request)
 
+def abdicate_approved_user_status(redditclient):
 
+    url = base_url + '/api/leavecontributor'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModeration.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
 
 
 
