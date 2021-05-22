@@ -1812,6 +1812,17 @@ def abdicate_moderator_status(redditclient):
 
     pprint(request)
 
+def mute_user_modmail(redditclient):
+
+    url = base_url + '/api/mute_message_author'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModeration.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
 
 
 if __name__ == '__main__':
