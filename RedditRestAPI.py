@@ -1800,6 +1800,18 @@ def abdicate_approved_user_status(redditclient):
 
     pprint(request)
 
+def abdicate_moderator_status(redditclient):
+
+    url = base_url + '/api/leavemoderator'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModeration.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
 
 
 if __name__ == '__main__':
