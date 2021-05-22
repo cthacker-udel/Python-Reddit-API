@@ -20,6 +20,7 @@ class RedditModeration(RedditClient):
         self.sticky = None
         self.api_type = None
         self.uh_x_modhash_header = None
+        self.level = None
 
     def generate_queries(self):
         queries = {}
@@ -51,6 +52,8 @@ class RedditModeration(RedditClient):
             queries['how'] = self.how
         if self.uh_x_modhash_header != None:
             queries['uh / X-Modhash header'] = self.uh_x_modhash_header
+        if self.level != None:
+            queries['level'] = self.level
         return queries
 
 

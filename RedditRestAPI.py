@@ -1824,6 +1824,44 @@ def mute_user_modmail(redditclient):
 
     pprint(request)
 
+def unmute_user_modmail(redditclient):
+
+    url = base_url + '/api/unmute_message_author'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModeration.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+def update_crowd_control_level(redditclient):
+
+    url = base_url + '/api/update_crowd_control_level'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModeration.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+def redirect_subreddit_stylesheet(redditclient):
+
+    url = base_url + '[/r/{}]/stylesheet'.format(redditclient.RedditModeration.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModeration.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
 
 if __name__ == '__main__':
     client = RedditClient()
