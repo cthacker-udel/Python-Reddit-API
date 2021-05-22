@@ -1687,6 +1687,35 @@ def get_reports_of_moderation_actions(redditclient):
     pprint(request)
 
 
+def get_moderation_action_spam(redditclient):
+
+    url = base_url + '[/r/{}]/about/spam'.format(redditclient.RedditModeration.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModeration.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+
+def get_modqueue_of_moderation_actions(redditclient):
+
+    url = base_url + '[/r/{}]/about/modqueue'.format(redditclient.RedditModeration.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModeration.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+
+
+
+
 
 
 
