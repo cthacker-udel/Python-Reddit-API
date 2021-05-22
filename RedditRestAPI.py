@@ -1776,6 +1776,17 @@ def distinguish_author(redditclient):
     pprint(request)
 
 
+def ignore_reports(redditclient):
+
+    url = base_url + '/api/ignore_reports'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModeration.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
 
 
 
