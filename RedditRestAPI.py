@@ -1882,6 +1882,21 @@ def mark_all_thread_conversation(redditclient):
     pprint(request)
 
 
+def get_logged_conversations(redditclient):
+
+    url = base_url + '/api/mod/conversations'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModmail.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+
+
+
 if __name__ == '__main__':
     client = RedditClient()
     client.add_scope('identity')
