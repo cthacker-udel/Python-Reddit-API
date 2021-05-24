@@ -15,6 +15,7 @@ class RedditModmail(RedditClient):
         self.srName = None
         self.subject = None
         self.to = None
+        self.conversation_id = None
 
 
     def generate_queries(self):
@@ -53,3 +54,6 @@ class RedditModmail(RedditClient):
         self.srName = None
         self.subject = None
         self.to = None
+
+    def get_subreddit(self):
+        return self.subreddit
