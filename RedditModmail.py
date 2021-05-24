@@ -10,6 +10,11 @@ class RedditModmail(RedditClient):
         self.limit = None
         self.sort = None
         self.subreddit = None
+        self.body = None
+        self.isAuthorHidden = None
+        self.srName = None
+        self.subject = None
+        self.to = None
 
 
     def generate_queries(self):
@@ -25,6 +30,16 @@ class RedditModmail(RedditClient):
             body['limit'] = self.limit
         if self.sort != None:
             body['sort'] = self.sort
+        if self.body != None:
+            body['body'] = self.body
+        if self.isAuthorHidden != None:
+            body['isAuthorHidden'] = self.isAuthorHidden
+        if self.srName != None:
+            body['srName'] = self.srName
+        if self.subject != None:
+            body['subject'] = self.subject
+        if self.to != None:
+            body['to'] = self.to
 
 
     def clear_queries(self):
@@ -33,3 +48,8 @@ class RedditModmail(RedditClient):
         self.after = None
         self.limit = None
         self.sort = None
+        self.body = None
+        self.isAuthorHidden = None
+        self.srName = None
+        self.subject = None
+        self.to = None

@@ -1894,6 +1894,18 @@ def get_logged_conversations(redditclient):
 
     pprint(request)
 
+def create_conversation(redditclient):
+
+    url = base_url + '/api/mod/conversations'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModmail.generate_queries()
+
+    request = requests.post(url,headers=headers,params=body)
+
+    pprint(request)
+
 
 
 
