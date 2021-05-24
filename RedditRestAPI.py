@@ -1918,6 +1918,20 @@ def get_conversations(redditclient):
 
     pprint(request)
 
+def create_new_message_for_conversation(redditclient):
+
+    url = base_url + '/api/mod/conversations/{}'.format(redditclient.RedditModmail.conversation_id)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModmail.generate_queries
+
+    request = requests.post(url,headers=headers,params=body)
+
+    pprint(request)
+
+
+
 
 
 

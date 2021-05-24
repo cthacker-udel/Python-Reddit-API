@@ -16,6 +16,7 @@ class RedditModmail(RedditClient):
         self.subject = None
         self.to = None
         self.conversation_id = None
+        self.isInternal = None
 
 
     def generate_queries(self):
@@ -41,6 +42,8 @@ class RedditModmail(RedditClient):
             body['subject'] = self.subject
         if self.to != None:
             body['to'] = self.to
+        if self.isInternal != None:
+            body['isInternal'] = self.isInternal
 
 
     def clear_queries(self):
@@ -54,6 +57,7 @@ class RedditModmail(RedditClient):
         self.srName = None
         self.subject = None
         self.to = None
+        self.isInternal = None
 
     def get_subreddit(self):
         return self.subreddit
