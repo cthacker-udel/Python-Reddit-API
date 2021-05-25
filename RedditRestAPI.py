@@ -1926,10 +1926,47 @@ def create_new_message_for_conversation(redditclient):
 
     body = redditclient.RedditModmail.generate_queries
 
-    request = requests.post(url,headers=headers,params=body)
+    request = requests.post(url,headers=headers,body=body)
 
     pprint(request)
 
+def approve_non_mode(redditclient):
+
+    url = base_url + '/api/mod/conversations/{}/approve'.format(redditclient.RedditModmail.conversation_id)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModmail.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+def mark_conversation_archived(redditclient):
+
+    url = base_url + '/api/mod/conversations/{}/archive'.format(redditclient.RedditModmail.conversation_id)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModmail.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+def disapprove_non_user_associated_with_conversation(redditclient):
+
+    url = base_url + '/api/mode/conversations/{}/disapprove'.format(redditclient.RedditModmail.conversation_id)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModmail.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
 
 
 
