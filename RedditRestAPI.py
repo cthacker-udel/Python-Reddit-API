@@ -1969,6 +1969,19 @@ def disapprove_non_user_associated_with_conversation(redditclient):
     pprint(request)
 
 
+def remove_highlight_from_conversation(redditclient):
+
+    url = base_url + '/api/mod/conversations/{}/highlight'.format(redditclient.RedditModmail.conversation_id)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModmail.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
 
 
 
