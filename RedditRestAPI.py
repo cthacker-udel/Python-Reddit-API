@@ -1977,6 +1977,19 @@ def remove_highlight_from_conversation(redditclient):
 
     body = redditclient.RedditModmail.generate_queries()
 
+    request = requests.delete(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+def marks_conversation_as_highlighed(redditclient):
+
+    url = base_url + '/api/mod/conversations/{}/highlight'.format(redditclient.RedditModmail.conversation_id)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModmail.generate_queries()
+
     request = requests.post(url,headers=headers,body=body)
 
     pprint(request)
