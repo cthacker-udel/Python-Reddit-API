@@ -2092,6 +2092,19 @@ def return_list_user_srs(redditclient):
     pprint(request)
 
 
+def mark_conversation_as_unread(redditclient):
+
+    url = base_url + '/api/mod/conversations/unread'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModmail.generate_queries()
+
+    request = requests.get(url,headers=headers,body=body)
+
+    pprint(request)
+
+
 
 
 

@@ -18,6 +18,7 @@ class RedditModmail(RedditClient):
         self.conversation_id = None
         self.isInternal = None
         self.duration = None
+        self.conversation_ids = []
 
 
     def generate_queries(self):
@@ -47,6 +48,8 @@ class RedditModmail(RedditClient):
             body['isInternal'] = self.isInternal
         if self.duration != None:
             body['duration'] = self.duration
+        if len(self.conversation_ids) > 0:
+            body['conversationIds'] = ','.join(self.conversation_ids)
         return body
 
 
@@ -65,3 +68,4 @@ class RedditModmail(RedditClient):
 
     def get_subreddit(self):
         return self.subreddit
+
