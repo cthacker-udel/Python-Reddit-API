@@ -2081,6 +2081,16 @@ def mark_conversation_as_read(redditclient):
 
     pprint(request)
 
+def return_list_user_srs(redditclient):
+
+    url = base_url + '/api/mod/conversations/subreddits'
+
+    headers = get_auth_header(redditclient)
+
+    request = requests.get(url,headers=headers)
+
+    pprint(request)
+
 
 
 
