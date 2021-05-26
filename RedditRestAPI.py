@@ -1995,6 +1995,46 @@ def marks_conversation_as_highlighed(redditclient):
     pprint(request)
 
 
+def mute_non_user_associated_with_conversation(redditclient):
+
+    url = base_url + '/api/mod/conversations/{}/mute'.format(redditclient.RedditModmail.conversation_id)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModmail.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+def temp_ban_non_mod_user(redditclient):
+
+    url = base_url + '/api/mod/conversations/{}/temp_ban'.format(redditclient.RedditModmail.conversation_id)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModmail.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+def mark_conversation_as_unarchived(redditclient):
+
+    url = base_url + '/api/mod/conversations/{}/unarchive'.format(redditclient.RedditModmail.conversation_id)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModmail.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+
+
 
 
 

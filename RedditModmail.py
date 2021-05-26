@@ -17,6 +17,7 @@ class RedditModmail(RedditClient):
         self.to = None
         self.conversation_id = None
         self.isInternal = None
+        self.duration = None
 
 
     def generate_queries(self):
@@ -44,6 +45,9 @@ class RedditModmail(RedditClient):
             body['to'] = self.to
         if self.isInternal != None:
             body['isInternal'] = self.isInternal
+        if self.duration != None:
+            body['duration'] = self.duration
+        return body
 
 
     def clear_queries(self):
