@@ -2044,6 +2044,43 @@ def unban_non_mod_user(redditclient):
 
     pprint(request)
 
+def unmute_non_user(redditclient):
+
+    url = base_url + '/api/mod/conversations/{}/unmmute'.format(redditclient.RedditModmail.conversation_id)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModmail.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+def return_user_modmail(redditclient):
+
+    url = base_url + '/api/mod/conversations/{}/user'.format(redditclient.RedditModmail.conversation_id)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModmail.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+
+def mark_conversation_as_read(redditclient):
+
+    url = base_url + '/api/mod/conversations/read'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModmail.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
 
 
 
