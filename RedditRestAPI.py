@@ -2100,7 +2100,19 @@ def mark_conversation_as_unread(redditclient):
 
     body = redditclient.RedditModmail.generate_queries()
 
-    request = requests.get(url,headers=headers,body=body)
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+def retrieve_unread_conversation(redditclient):
+
+    url = base_url + '/api/mod/conversations/unread/count'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditModmail.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
 
     pprint(request)
 
