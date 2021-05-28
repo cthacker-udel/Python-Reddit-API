@@ -2145,6 +2145,21 @@ def fetch_multi_list(redditclient):
 
     pprint(request)
 
+def fetch_list_of_public_multis(redditclient):
+
+    url = base_url + '/api/multi/user/{}'.format(redditclient.RedditMulti.user_name)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditMulti.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+
+
+
 
 
 
