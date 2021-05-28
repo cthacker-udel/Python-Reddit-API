@@ -2157,6 +2157,18 @@ def fetch_list_of_public_multis(redditclient):
 
     pprint(request)
 
+def delete_multi(redditclient):
+
+    url = base_url + '/api/multi/{}'.format(redditclient.RedditMulti.multi_path)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditMulti.generate_queries()
+
+    request = requests.delete(url,headers=headers,body=body)
+
+    pprint(request)
+
 
 
 

@@ -10,6 +10,7 @@ class RedditMulti(RedditClient):
         self.to = None
         self.uh_x_modhash_header = None
         self.user_name
+        self.multi_path
 
     def generate_queries(self):
 
