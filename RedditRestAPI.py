@@ -2230,6 +2230,19 @@ def update_multipath(redditclient):
 
     pprint(request)
 
+def update_filterpath(redditclient):
+
+    url = base_url + '/api/filter/{}'.format(redditclient.RedditMulti.multi_path)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditMulti.generate_queries()
+
+    request = requests.put(url,headers=headers,body=body)
+
+    pprint(request)
+
+
 
 
 
