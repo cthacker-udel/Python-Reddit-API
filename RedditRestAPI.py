@@ -2267,6 +2267,19 @@ def change_multipath_description(redditclient):
     pprint(request)
 
 
+def remove_subredditc_from_multi(redditclient):
+
+    url = base_url + '/api/multi/{}/r/{}'.format(redditclient.RedditMulti.multi_path,redditclient.RedditMulti.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditMUlti.generate_queries()
+
+    request = requests.delete(url,headers=headers,body=body)
+
+    pprint(request)
+
+
 
 
 

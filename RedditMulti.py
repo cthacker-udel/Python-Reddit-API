@@ -12,6 +12,7 @@ class RedditMulti(RedditClient):
         self.user_name = None
         self.multi_path = None
         self.filter_path = None
+        self.subreddit = None
 
     def generate_queries(self):
 
