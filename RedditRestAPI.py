@@ -2242,6 +2242,29 @@ def update_filterpath(redditclient):
 
     pprint(request)
 
+def get_multipath_description(redditclient):
+
+    url = base_url + '/api/multi/{}/description'.format(redditclient.RedditMulti.multi_path)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditMulti.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+def change_multipath_description(redditclient):
+
+    url = base_url + '/api/multi/{}/description'.format(redditclient.RedditMulti.multi_path)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditMulti.generate_queries()
+
+    request = requests.put(url,headers=headers,body=body)
+
+    pprint(request)
 
 
 
