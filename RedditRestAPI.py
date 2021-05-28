@@ -2116,6 +2116,34 @@ def retrieve_unread_conversation(redditclient):
 
     pprint(request)
 
+#############
+# MULTIS API
+#############
+
+def copy_multi(redditclient):
+
+    url = base_url + '/api/multi/copy'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditMulti.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+def fetch_multi_list(redditclient):
+
+    url = base_url + '/api/multi/mine'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditMulti.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
 
 
 
