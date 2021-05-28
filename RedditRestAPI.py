@@ -2181,6 +2181,21 @@ def fetch_multipath_data(redditclient):
 
     pprint(request)
 
+def fetch_filterpath_data(redditclient):
+
+    url = base_url + '/api/filter/{}'.format(redditclient.RedditMulti.filter_path)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditMulti.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+
+
+
 
 
 
