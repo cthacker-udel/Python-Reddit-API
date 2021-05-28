@@ -2206,6 +2206,19 @@ def create_mutlipath(redditclient):
 
     pprint(request)
 
+def create_filterpath(redditclient):
+
+    url = base_url + '/api/filter/{}'.format(redditclient.RedditMulti.filter_path)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditMulti.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
 
 
 
