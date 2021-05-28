@@ -2169,6 +2169,18 @@ def delete_multi(redditclient):
 
     pprint(request)
 
+def fetch_multipath_data(redditclient):
+
+    url = base_url + '/api/multi/{}'.format(redditclient.RedditMulti.multi_path)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditMulti.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
 
 
 
