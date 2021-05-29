@@ -2267,7 +2267,7 @@ def change_multipath_description(redditclient):
     pprint(request)
 
 
-def remove_subredditc_from_multi(redditclient):
+def remove_subreddit_from_multi(redditclient):
 
     url = base_url + '/api/multi/{}/r/{}'.format(redditclient.RedditMulti.multi_path,redditclient.RedditMulti.subreddit)
 
@@ -2278,6 +2278,49 @@ def remove_subredditc_from_multi(redditclient):
     request = requests.delete(url,headers=headers,body=body)
 
     pprint(request)
+
+def get_data_about_subredit_in_a_multi(redditclient):
+
+    url = base_url + '/api/multi/{}/r/{}'.format(redditclient.RedditMutli.multi_path,redditclient.RedditMulti.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditMulti.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+def add_subreddit_to_multi(redditclient):
+
+    url = base_url + '/api/multi/{}/r/{}'.format(redditclient.RedditMulti.multi_path,redditclient.RedditMulti.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditMulti.generate_queries()
+
+    request = requests.put(url,headers=headers,body=body)
+
+    pprint(request)
+
+#############
+# SEARCH API
+#############
+
+def search_links_page(redditclient):
+
+    url = base_url + '[/r/{}]/search'.format(redditclient.RedditSearch.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSearch.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+
+
 
 
 
