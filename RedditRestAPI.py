@@ -2320,8 +2320,97 @@ def search_links_page(redditclient):
     pprint(request)
 
 
+################
+# SUBREDDIT API
+################
+
+def get_subreddit_where(redditclient):
+
+    url = base_url + '[/r/{}]/about/{}'.format(redditclient.RedditSubreddit.subreddit,redditclient.RedditSubreddit.where)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSearch.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
 
 
+def get_banned_subreddit(redditclient):
+
+    url = base_url + '[/r/{}]/about/banned'.format(redditclient.RedditSubreddit.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+
+def get_muted_subreddit(redditclient):
+
+    url = base_url + '[/r/{}]/about/banned'.format(redditclient.RedditSubreddit.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+
+def get_wikibanned_subreddit(redditclient):
+
+    url = base_url + '[/r/{}]/about/wikibanned'.format(redditclient.RedditSubreddit.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+def get_subreddit_contributors(redditclient):
+
+    url = base_url + '[/r/{}]/about/contributors'.format(redditclient.RedditSubreddit.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+
+def get_subreddit_wikicontributors(redditclient):
+
+    url = base_url + '[/r/{}]/about/wikicontributors'.format(redditclient.RedditSubreddit.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+def get_subreddit_moderators(redditclient):
+
+    url = base_url + '[/r/{}]/about/moderators'.format(redditclient.RedditSubreddit.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
 
 
 
