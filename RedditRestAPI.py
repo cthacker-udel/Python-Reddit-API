@@ -2452,6 +2452,21 @@ def remove_subreddit_mobile_icon(redditclient):
     pprint(request)
 
 
+def remove_subreddit_image(redditclient):
+
+    url = base_url + '[/r/{}]/api/delete_sr_img'.format(redditclient.RedditSubreddit.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+
+
 
 
 
