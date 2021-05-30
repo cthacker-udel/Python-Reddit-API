@@ -2464,6 +2464,18 @@ def remove_subreddit_image(redditclient):
 
     pprint(request)
 
+def get_subreddit_names_by_query(redditclient):
+
+    url = base_url + '/api/search_reddit_names'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
 
 
 
