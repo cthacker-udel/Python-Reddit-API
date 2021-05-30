@@ -2413,6 +2413,45 @@ def get_subreddit_moderators(redditclient):
     pprint(request)
 
 
+def remove_subreddit_mobile_banner(redditclient):
+
+    url = base_url + "[/r/{}]/api/delete_sr_banner".format(redditclient.RedditSubreddit.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+def remove_subreddit_custom_header_image(redditclient):
+
+    url = base_url + '[/r/{}]/api/delete_sr_header'.format(redditclient.RedditSubreddit.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+def remove_subreddit_mobile_icon(redditclient):
+
+    url = base_url + '[/r/{}]/api/delete_sr_icon'.format(redditclient.RedditSubreddit.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
 
 
 
