@@ -2477,6 +2477,29 @@ def get_subreddit_names_by_query(redditclient):
     pprint(request)
 
 
+def list_subreddit_names_by_query(redditclient):
+
+    url = base_url + '/api/search_reddit_names'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(body)
+
+def list_subreddits_by_query(redditclient):
+
+    url = base_url + '/api/search_subreddits'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    pprint(body)
+
+
 
 
 

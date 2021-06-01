@@ -26,6 +26,66 @@ class RedditSubreddit(RedditClient):
         self.typehead_active = None
         self.exact = None
 
+        self.admin_override_spam_comments = None
+        self.admin_override_spam_links = None
+        self.admin_override_spam_selfports = None
+        self.all_original_content = None
+        self.allow_chat_post_creation = None
+        self.allow_discovery = None
+        self.allow_galleries = None
+        self.allow_images = None
+        self.allow_polls = None
+        self.allow_post_crossposts = None
+        self.allow_predictions = None
+        self.allow_predictions_tournaments = None
+        self.allow_top = None
+        self.allow_videos = None
+        self.api_type = None
+        self.automated_reporting_level_abuse = None
+        self.automated_reporting_level_hate = None
+        self.collapse_deleted_comments = None
+        self.comment_score_hide_mins = None
+        self.crowd_control_chat_level = None
+        self.crowd_control_level = None
+        self.crowd_control_mode = None
+        self.description = None
+        self.disable_contributor_requests = None
+        self.exclude_banned_modqueue = None
+        self.free_form_reports = None
+        self.g_recaptcha_response = None
+        self.header_title = None
+        self.hide_ads = None
+        self.key_color = None
+        self.lang = None
+        self.link_type = None
+        self.name = None
+        self.new_pinned_post_pns_enabled = None
+        self.original_content_tag_enabled = None
+        self.over_18 = None
+        self.prediction_leaderboard_entry_type = None
+        self.public_description = None
+        self.restrict_commenting = None
+        self.show_media = None
+        self.show_media_preview = None
+        self.spam_comments = None
+        self.spam_links = None
+        self.spam_selfposts = None
+        self.spoilers_enabled = None
+        self.sr = None
+        self.submit_link_label = None
+        self.submit_text = None
+        self.submit_text_label = None
+        self.suggested_comment_sort = None
+        self.title = None
+        self.toxicity_threshold_chat_level = None
+        self.type =  None
+        self.user_flair_pns_enabled = None
+        self.welcome_message_enabled = None
+        self.welcome_message_text = None
+        self.wiki_edit_age = None
+        self.wiki_edit_karma = None
+        self.wikimode = N
+
 
     def generate_queries(self):
 
