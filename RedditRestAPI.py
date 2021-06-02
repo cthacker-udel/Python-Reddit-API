@@ -2500,6 +2500,17 @@ def list_subreddits_by_query(redditclient):
     pprint(body)
 
 
+def create_or_configure_subreddit(redditclient):
+
+    url = base_url + '/api/site_admin'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    pprint(body)
+
+
 
 
 
