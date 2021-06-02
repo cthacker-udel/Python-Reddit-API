@@ -2551,7 +2551,17 @@ def get_list_of_subreddits_by_query_v2(redditclient):
 
     pprint(request)
 
+def update_subreddit_stylesheet(redditclient):
 
+    url = base_url + '[/r/{}]/api/subreddit_stylesheet'.format(redditclient.RedditSubreddit.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
 
 
 

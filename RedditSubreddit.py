@@ -87,6 +87,9 @@ class RedditSubreddit(RedditClient):
         self.wikimode = None
         self.include_profiles = None
         self.query = None
+        self.op = None
+        self.reason = None
+        self.stylesheet_contents = None
 
 
     def generate_queries(self):
@@ -251,6 +254,12 @@ class RedditSubreddit(RedditClient):
             body['wiki_edit_karma'] = self.wiki_edit_karma
         if self.wikimode != None:
             body['wikimode'] = self.wikimode
+        if self.op != None:
+            body['op'] = self.op
+        if self.reason != None:
+            body['reason'] = self.reason
+        if self.stylesheet_contents != None:
+            body['stylesheet_contents'] = self.stylesheet_contents
         return body
 
 
@@ -335,3 +344,6 @@ class RedditSubreddit(RedditClient):
         self.wiki_edit_age = None
         self.wiki_edit_karma = None
         self.wikimode = None
+        self.op = None
+        self.reason = None
+        self.stylesheet_contents = None
