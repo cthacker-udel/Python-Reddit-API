@@ -2497,6 +2497,8 @@ def list_subreddits_by_query(redditclient):
 
     body = redditclient.RedditSubreddit.generate_queries()
 
+    request = requests.post(url,headers=headers,body=body)
+
     pprint(body)
 
 
@@ -2508,7 +2510,36 @@ def create_or_configure_subreddit(redditclient):
 
     body = redditclient.RedditSubreddit.generate_queries()
 
+    request = requests.post(url,headers=headers,body=body)
+
     pprint(body)
+
+
+def get_submission_text_for_subreddit(redditclient):
+
+    url = base_url + '[/r/{}]/api/submit_text'.format(redditclient.RedditSubreddit.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(body)
+
+def get_list_of_subreddits(redditclient):
+
+    url = base_url + '/api/subreddit_autocomplete'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+
 
 
 
