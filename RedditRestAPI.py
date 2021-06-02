@@ -2527,7 +2527,7 @@ def get_submission_text_for_subreddit(redditclient):
 
     pprint(body)
 
-def get_list_of_subreddits(redditclient):
+def get_list_of_subreddits_by_query(redditclient):
 
     url = base_url + '/api/subreddit_autocomplete'
 
@@ -2539,15 +2539,17 @@ def get_list_of_subreddits(redditclient):
 
     pprint(request)
 
+def get_list_of_subreddits_by_query_v2(redditclient):
 
+    url = base_url + '/api/subreddit_autocomplete_v2'
 
+    headers = get_auth_header(redditclient)
 
+    body = redditclient.RedditSubreddit.generate_queries()
 
+    request = requests.get(url,headers=headers,params=body)
 
-
-
-
-
+    pprint(request)
 
 
 

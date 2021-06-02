@@ -25,7 +25,6 @@ class RedditSubreddit(RedditClient):
         self.search_query_id = None
         self.typehead_active = None
         self.exact = None
-
         self.admin_override_spam_comments = None
         self.admin_override_spam_links = None
         self.admin_override_spam_selfposts = None
@@ -86,6 +85,8 @@ class RedditSubreddit(RedditClient):
         self.wiki_edit_age = None
         self.wiki_edit_karma = None
         self.wikimode = None
+        self.include_profiles = None
+        self.query = None
 
 
     def generate_queries(self):
