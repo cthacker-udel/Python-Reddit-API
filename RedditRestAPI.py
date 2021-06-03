@@ -2563,6 +2563,18 @@ def update_subreddit_stylesheet(redditclient):
 
     pprint(request)
 
+def subscribe_to_subreddit(redditclient):
+
+    url = base_url + '/api/subscribe'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
 
 
 
