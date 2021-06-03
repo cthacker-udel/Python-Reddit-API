@@ -2575,6 +2575,15 @@ def subscribe_to_subreddit(redditclient):
 
     pprint(request)
 
+def add_or_replace_subreddit_image(redditclient):
+
+    url = base_url + '[/r/{}]/api/upload_sr_img'.format(redditclient.RedditSubreddit.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
 
 
 

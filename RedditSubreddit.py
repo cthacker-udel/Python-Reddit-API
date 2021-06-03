@@ -91,11 +91,26 @@ class RedditSubreddit(RedditClient):
         self.reason = None
         self.stylesheet_contents = None
 
+        self.file = None
+        self.form_id = None
+        self.header = None
+        self.img_type = None
+        self.upload_type = None
+
 
     def generate_queries(self):
 
         body = {}
-
+        if self.file != None:
+            body['file'] = self.file
+        if self.form_id != None:
+            body['formid'] = self.form_id
+        if self.header != None:
+            body['header'] = self.header
+        if self.img_type != None:
+            body['img_type'] = self.img_type
+        if self.upload_type != None:
+            body['upload_type'] = self.upload_type
         if self.after != None:
             body['after'] = self.after
         if self.before != None:
@@ -347,3 +362,9 @@ class RedditSubreddit(RedditClient):
         self.op = None
         self.reason = None
         self.stylesheet_contents = None
+
+        self.form_id = None
+        self.header = None
+        self.img_type = None
+        self.file = None
+        self.upload_type = None
