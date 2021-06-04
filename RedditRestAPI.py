@@ -2759,6 +2759,32 @@ def get_all_subreddits(redditclient):
 
     pprint(request)
 
+def get_all_popular(redditclient):
+
+    url = base_url + '/subreddits/popular'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+def get_all_new_subreddits(redditclient):
+
+    url = base_url + '/subreddits/new'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+
+
 
 
 
