@@ -96,11 +96,27 @@ class RedditSubreddit(RedditClient):
         self.header = None
         self.img_type = None
         self.upload_type = None
+        self.num = None
+        self.where = None
+
+        self.q = None
+        self.show_users = None
+        self.sort = None
 
 
     def generate_queries(self):
 
         body = {}
+        if self.q != None:
+            body['q'] = self.q
+        if self.show_users != None:
+            body['show_users'] = self.show_users
+        if self.sort != None:
+            body['sort'] = self.sort
+        if self.where != None:
+            body['where'] = self.where
+        if self.num != None:
+            body['num'] = self.num
         if self.file != None:
             body['file'] = self.file
         if self.form_id != None:
@@ -368,3 +384,5 @@ class RedditSubreddit(RedditClient):
         self.img_type = None
         self.file = None
         self.upload_type = None
+        self.num = None
+        self.where = None

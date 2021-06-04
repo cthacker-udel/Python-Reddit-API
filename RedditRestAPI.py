@@ -2637,6 +2637,129 @@ def get_rules_of_subreddit(redditclient):
 
     pprint(request)
 
+def get_traffic_of_subreddit(redditclient):
+
+    url = base_url + '/r/{}/about/traffic'.format(redditclient.RedditSubreddit.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+def get_sidebar_subreddit(redditclient):
+
+    url = base_url + '[/r/{}]/sidebar'.format(redditclient.RedditSubreddit.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+def redirect_to_stickied_posts(redditclient):
+
+    url = base_url + '[/r/{}]/sticky'.format(redditclient.RedditSubreddit.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+def find_user_subreddit(redditclient):
+
+    url = base_url + '/subreddits/mine/{}'.format(redditclient.RedditSubreddit.where)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+def find_user_subreddit_subscriber(redditclient):
+
+    url = base_url + '/subreddits/mine/subscriber'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+
+def find_user_subreddit_contributor(redditclient):
+
+    url = base_url + '/subreddits/mine/contributor'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+def find_user_subreddit_moderator(redditclient):
+
+    url = base_url + '/subreddits/mine/moderator'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+def find_user_subreddits_streams(redditclient):
+
+    url = base_url + '/subreddits/mine/streams'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+def search_subreddits_by_title_description(redditclient):
+
+    url = base_url + '/subreddits/search'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+
+def get_all_subreddits(redditclient):
+
+    url = base_url + '/subreddits/{}'.format(redditclient.RedditSubreddit.where)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+
 
 
 
