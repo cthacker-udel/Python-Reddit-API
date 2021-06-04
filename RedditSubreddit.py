@@ -104,6 +104,7 @@ class RedditSubreddit(RedditClient):
         self.sort = None
 
 
+
     def generate_queries(self):
 
         body = {}

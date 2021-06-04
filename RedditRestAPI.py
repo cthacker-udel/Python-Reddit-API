@@ -2807,6 +2807,30 @@ def get_default_subreddits(redditclient):
 
     pprint(request)
 
+def search_user_profile_by_title_description(redditclient):
+
+    url = base_url + '/users/search'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+def get_all_user_subreddits(redditclient):
+
+    url = base_url + '/users/{}'.format(redditclient.RedditSubreddit.where)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
 
 
 
