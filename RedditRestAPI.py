@@ -2795,6 +2795,20 @@ def get_all_gold_subreddits(redditclient):
 
     pprint(request)
 
+def get_default_subreddits(redditclient):
+
+    url = base_url + '/subreddits/default'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+
+
 
 
 
