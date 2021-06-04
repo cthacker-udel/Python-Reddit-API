@@ -2585,6 +2585,36 @@ def add_or_replace_subreddit_image(redditclient):
 
     request = requests.post(url,headers=headers,body=body)
 
+    pprint(request)
+
+def fetch_moderator_requirements(redditclient):
+
+    url = base_url + '/api/v1/{}/post_requirements'.format(redditclient.RedditSubreddit.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+def return_information(redditclient):
+
+    url = base_url + '/r/{}/about'.format(redditclient.RedditSubreddit.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+
+
+
+
 
 
 
