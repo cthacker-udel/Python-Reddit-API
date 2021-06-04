@@ -2612,6 +2612,21 @@ def return_information(redditclient):
     pprint(request)
 
 
+def current_settings_subreddit(redditclient):
+
+    url = base_url + '/r/{}/about/edit'.format(redditclient.RedditSubreddit.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+
+
+
 
 
 
