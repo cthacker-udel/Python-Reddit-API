@@ -2625,6 +2625,21 @@ def current_settings_subreddit(redditclient):
     pprint(request)
 
 
+def get_rules_of_subreddit(redditclient):
+
+    url = base_url + '/r/{}/about/rules'.format(redditclient.RedditSubreddit.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+
+
+
 
 
 
