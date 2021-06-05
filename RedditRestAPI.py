@@ -2960,6 +2960,18 @@ def unfriend_user(redditclient):
 
     body = redditclient.RedditUser.generate_queries()
 
+    request = requests.delete(url,headers=headers,body=body)
+
+    pprint(request)
+
+def get_friend_information(redditclient):
+
+    url = base_url + '/api/v1/me/friends/{}'.format(redditclient.RedditUser.user)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditUser.generate_queries()
+
     request = requests.get(url,headers=headers,params=body)
 
     pprint(request)
