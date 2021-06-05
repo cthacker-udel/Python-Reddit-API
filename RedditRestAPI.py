@@ -2844,6 +2844,19 @@ def get_all_popular_subreddits(redditclient):
     pprint(request)
 
 
+def get_all_user_new_subreddits(redditclient):
+
+    url = base_url + '/users/new'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditSubreddit.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+
 
 
 
