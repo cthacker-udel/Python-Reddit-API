@@ -23,6 +23,8 @@ class RedditUser(RedditClient):
         self.reason = None
         self.user = None
 
+        self.ids = []
+
 
     def generate_queries(self):
         body = {}
@@ -56,6 +58,8 @@ class RedditUser(RedditClient):
             body['reason'] = self.reason
         if self.user != None:
             body['(\'user\',)'] = self.user
+        if len(self.ids) > 0:
+            body['ids'] = ','.format(self.ids)
         return body
 
     def clear_queries(self):

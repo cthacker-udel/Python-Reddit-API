@@ -2926,6 +2926,19 @@ def set_user_permissions(redditclient):
     pprint(request)
 
 
+def get_user_data_by_account_ids(redditclient):
+
+    url = base_url + '/api/user_data_by_account_ids'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditUser.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+
 
 
 
