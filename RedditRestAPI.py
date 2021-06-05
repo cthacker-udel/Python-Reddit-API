@@ -2939,6 +2939,19 @@ def get_user_data_by_account_ids(redditclient):
     pprint(request)
 
 
+def check_if_username_available(redditclient):
+
+    url = base_url + '/api/username_available'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditUser.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(body)
+
+
 
 
 
