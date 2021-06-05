@@ -2887,7 +2887,17 @@ def add_friend(redditclient):
 
     pprint(request)
 
+def unfriend_user(redditclient):
 
+    url = base_url + '[/r/{}]/api/unfriend'.format(redditclient.RedditUser.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditUser.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
 
 
 
