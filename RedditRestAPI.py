@@ -2952,6 +2952,21 @@ def check_if_username_available(redditclient):
     pprint(body)
 
 
+def unfriend_user(redditclient):
+
+    url = base_url + '/api/v1/me/friends/{}'.format(redditclient.RedditUser.user)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditUser.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+
+
+
 
 
 
