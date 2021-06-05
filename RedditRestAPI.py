@@ -2862,7 +2862,17 @@ def get_all_user_new_subreddits(redditclient):
 ############
 
 
+def block_user(redditclient):
 
+    url = base_url + '/api/block_user'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditUser.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
 
 
 
