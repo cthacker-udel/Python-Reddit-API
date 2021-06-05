@@ -19,6 +19,10 @@ class RedditUser(RedditClient):
         self.permissions = None
         self.type = None
 
+        self.details = None
+        self.reason = None
+        self.user = None
+
 
     def generate_queries(self):
         body = {}
@@ -46,6 +50,12 @@ class RedditUser(RedditClient):
             body['name'] = self.name
         if self.uh_x_modhash_header != None:
             body['uh / X-Modhash header']
+        if self.details != None:
+            body['details'] = self.details
+        if self.reason != None:
+            body['reason'] = self.reason
+        if self.user != None:
+            body['(\'user\',)'] = self.user
         return body
 
     def clear_queries(self):
@@ -61,3 +71,6 @@ class RedditUser(RedditClient):
         self.note = None
         self.permissions = None
         self.type = None
+        self.details = None
+        self.reason = None
+        self.user = None

@@ -2900,6 +2900,19 @@ def unfriend_user(redditclient):
     pprint(request)
 
 
+def report_user(redditclient):
+
+    url = base_url + '/api/report_user'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditUser.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
 
 
 
