@@ -2913,6 +2913,19 @@ def report_user(redditclient):
     pprint(request)
 
 
+def set_user_permissions(redditclient):
+
+    url = base_url + '[/r/{}]/api/setpermissions'.format(redditclient.RedditUser.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditUser.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
 
 
 
