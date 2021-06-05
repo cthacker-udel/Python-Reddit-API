@@ -2875,6 +2875,21 @@ def block_user(redditclient):
     pprint(request)
 
 
+def add_friend(redditclient):
+
+    url = base_url + '[/r/{}]/api/friend'.format(redditclient.RedditUser.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditUser.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+
+
 
 
 

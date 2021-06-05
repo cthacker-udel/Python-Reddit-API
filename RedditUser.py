@@ -8,6 +8,7 @@ class RedditUser(RedditClient):
         self.api_type = None
         self.name = None
         self.uh_x_modhash_header = None
+        self.subreddit = None
 
 
     def generate_queries(self):
