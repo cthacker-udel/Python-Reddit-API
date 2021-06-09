@@ -2989,6 +2989,18 @@ def get_user_trophies(redditclient):
 
     pprint(request)
 
+def get_user_information(redditclient):
+
+    url = base_url + '/user/{}/about'.format(redditclient.RedditUser.user)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditUser.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
 
 
 
