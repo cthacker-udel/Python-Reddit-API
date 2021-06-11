@@ -3112,6 +3112,16 @@ def get_user_gilded(redditclient):
     pprint(request)
 
 
+###############
+# WIDGETS API
+###############
+
+
+def get_subreddit_widget(redditclient):
+
+    url = base_url + '[/r/{}]/api/widget'
+
+
 
 
 
