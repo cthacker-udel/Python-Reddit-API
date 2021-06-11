@@ -3037,7 +3037,17 @@ def get_user_submitted(redditclient):
 
     pprint(request)
 
+def get_user_comments(redditclient):
 
+    url = base_url + '/user/{}/comments'.format(redditclient.RedditUser.user)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditUser.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
 
 
 
