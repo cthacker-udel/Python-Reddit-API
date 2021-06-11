@@ -3137,7 +3137,17 @@ def delete_widget(redditclient):
 
     pprint(request)
 
+def acquire_widget(redditclient):
 
+    url = base_url + '[/r/{}]/api/widget/widget_image_upload_s3'.format(redditclient.RedditWidget.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditWidget.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
 
 
 
