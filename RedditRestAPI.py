@@ -3119,9 +3119,13 @@ def get_user_gilded(redditclient):
 
 def get_subreddit_widget(redditclient):
 
-    url = base_url + '[/r/{}]/api/widget'
+    url = base_url + '[/r/{}]/api/widget'.format(redditclient.RedditWidget.subreddit)
 
+    headers = get_auth_header(redditclient)
 
+    request = requests.get(url,headers=headers)
+
+    pprint(request)
 
 
 
