@@ -3127,6 +3127,19 @@ def get_subreddit_widget(redditclient):
 
     pprint(request)
 
+def delete_widget(redditclient):
+
+    url = base_url + '[/r/{}]/api/widget/{}'.format(redditclient.RedditWidget.subreddit,redditclient.RedditWidget.widget_id)
+
+    headers = get_auth_header(redditclient)
+
+    request = requests.delete(url,headers=headers)
+
+    pprint(request)
+
+
+
+
 
 
 
