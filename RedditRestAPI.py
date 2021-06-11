@@ -3050,6 +3050,19 @@ def get_user_comments(redditclient):
     pprint(request)
 
 
+def get_user_upvoted(redditclient):
+
+    url = base_url + '/user/{}/upvoted'.format(redditclient.RedditUser.user)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditUser.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+
 
 
 
