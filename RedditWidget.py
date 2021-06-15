@@ -8,6 +8,7 @@ class RedditWidget(RedditClient):
         self.subreddit = None
         self.filepath = None
         self.mimetype = None
+        self.section = None
 
 
     def generate_queries(self):

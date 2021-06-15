@@ -3149,6 +3149,18 @@ def acquire_widget(redditclient):
 
     pprint(request)
 
+def update_widget_ids(redditclient):
+
+    url = base_url + "[/r/{}]/api/widget_order/{}".format(redditclient.RedditWidget.subreddit,redditclient.RedditWidget.section)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditWidget.generate_queries()
+
+    request = requests.patch(url,headers=headers,body=body)
+
+    pprint(request)
+
 
 
 
