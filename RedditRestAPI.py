@@ -3215,6 +3215,19 @@ def add_editor_to_wiki(redditclient):
     pprint(request)
 
 
+def edit_wiki_page(redditclient):
+
+    url = base_url + '[/r/{}]/api/wiki/edit'.format(redditclient.RedditWiki.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditWiki.generate_queries()
+
+    request = requests.post(Url,headers=headers,body=body)
+
+    pprint(request)
+
+
 
 
 
