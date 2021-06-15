@@ -3178,7 +3178,21 @@ def get_all_subreddit_widgets(redditclient):
 # WIKI API
 ###########
 
+def add_editor_to_wiki(redditclient):
 
+    url = base_url + '[/r/{}]/api/wiki/alloweditor/{}'.format(redditclient.RedditWiki.subreddit,redditclient.RedditWiki.act)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditWiki.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+    
+    pprint(request)
+
+def del_editor_from_wiki(redditclient):
+
+    print('hello')
 
 
 
