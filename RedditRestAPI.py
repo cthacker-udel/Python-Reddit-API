@@ -3169,7 +3169,7 @@ def get_all_subreddit_widgets(redditclient):
 
     body = redditclient.RedditWidget.generate_queries()
 
-    request = requests.get(url,headers=headers,body=body)
+    request = requests.get(url,headers=headers,params=body)
 
     pprint(request)
 
@@ -3248,6 +3248,18 @@ def revert_wiki_to_revision(redditclient):
     body = redditclient.RedditWiki.generate_queries()
 
     request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+def retrieve_list_of_wiki_discussions(redditclient):
+
+    url = base_url + '[/r/{}]/wiki/discussions/{}'.format(redditclient.RedditWiki.subreddit,redditclient.RedditWiki.page)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditWiki.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
 
     pprint(request)
 

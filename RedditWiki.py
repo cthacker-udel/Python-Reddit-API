@@ -14,6 +14,12 @@ class RedditWiki(RedditClient):
         self.content = None
         self.revision = None
         self.page = None
+        self.after = None
+        self.before = None
+        self.count = None
+        self.limit = None
+        self.show = None
+        self.sr_detail = None
 
 
     def generate_queries(self):
@@ -38,6 +44,18 @@ class RedditWiki(RedditClient):
             body['revision'] = self.revision
         if self.page != None:
             body['page'] = self.page
+        if self.after != None:
+            body['after'] = self.after
+        if self.before != None:
+            body['before'] = self.before
+        if self.count != None:
+            body['count'] = self.count
+        if self.limit != None:
+            body['limit'] = self.limit
+        if self.show != None:
+            body['show'] = self.show
+        if self.sr_detail != None:
+            body['sr_detail'] = self.sr_detail
         return body
 
     def clear_queries(self):
@@ -50,3 +68,9 @@ class RedditWiki(RedditClient):
         self.reason = None
         self.content = None
         self.page = None
+        self.after = None
+        self.before = None
+        self.count = None
+        self.limit = None
+        self.show = None
+        self.sr_detail = None
