@@ -11,7 +11,8 @@ class RedditWiki(RedditClient):
         self.username = None
         self.previous = None
         self.reason = None
-        self.content
+        self.content = None
+        self.revision = None
 
 
     def generate_queries(self):
@@ -32,6 +33,8 @@ class RedditWiki(RedditClient):
             body['reason'] = self.reason
         if self.content != None:
             body['content'] = self.content
+        if self.revision != None:
+            body['revision'] = self.revision
         return body
 
     def clear_queries(self):

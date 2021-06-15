@@ -3227,6 +3227,20 @@ def edit_wiki_page(redditclient):
 
     pprint(request)
 
+def toggle_public_visibility_of_wiki(redditclient):
+
+    url = base_url + '[/r/{}]/api/wiki/hide'.format(redditclient.RedditWiki.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditWiki.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+
 
 
 
