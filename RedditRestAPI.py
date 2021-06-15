@@ -3239,7 +3239,17 @@ def toggle_public_visibility_of_wiki(redditclient):
 
     pprint(request)
 
+def revert_wiki_to_revision(redditclient):
 
+    url = base_url + '[/r/{}]/api/wiki/revert'.format(redditclient.RedditWiki.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditWiki.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
 
 
 

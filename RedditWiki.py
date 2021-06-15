@@ -13,6 +13,7 @@ class RedditWiki(RedditClient):
         self.reason = None
         self.content = None
         self.revision = None
+        self.page = None
 
 
     def generate_queries(self):
@@ -35,6 +36,8 @@ class RedditWiki(RedditClient):
             body['content'] = self.content
         if self.revision != None:
             body['revision'] = self.revision
+        if self.page != None:
+            body['page'] = self.page
         return body
 
     def clear_queries(self):
@@ -46,3 +49,4 @@ class RedditWiki(RedditClient):
         self.previous = None
         self.reason = None
         self.content = None
+        self.page = None
