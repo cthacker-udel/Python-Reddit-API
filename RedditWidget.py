@@ -9,6 +9,8 @@ class RedditWidget(RedditClient):
         self.filepath = None
         self.mimetype = None
         self.section = None
+        self.progressive_images = None
+        self.json = None
 
 
     def generate_queries(self):
@@ -17,4 +19,8 @@ class RedditWidget(RedditClient):
             body['filepath'] = self.filepath
         if self.mimetype != None:
             body['mimetype'] = self.mimetype
+        if self.json != None:
+            body['json'] = self.json
+        if self.progressive_images != None:
+            body['progressive_images'] = self.progressive_
         return body

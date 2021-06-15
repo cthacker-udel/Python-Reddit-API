@@ -3161,6 +3161,18 @@ def update_widget_ids(redditclient):
 
     pprint(request)
 
+def get_all_subreddit_widgets(redditclient):
+
+    url = base_url + '[/r/{}]/api/widgets'
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditWidget.generate_queries()
+
+    request = requests.get(url,headers=headers,body=body)
+
+    pprint(request)
+
 
 
 
