@@ -3263,6 +3263,20 @@ def retrieve_list_of_wiki_discussions(redditclient):
 
     pprint(request)
 
+def retrieve_list_subreddit_wiki_pages(redditclient):
+
+    url = base_url + '[/r/{}]/wiki/pages'.format(redditclient.RedditWiki.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditWiki.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+    
+
 
 
 
