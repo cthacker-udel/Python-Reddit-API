@@ -3312,7 +3312,17 @@ def update_permissions_and_visibility_wiki_page(redditclient):
 
     pprint(request)
 
+def return_content_of_wiki_page(redditclient):
 
+    url = base_url + '[/r/{}]/wiki/{}'.format(redditclient.RedditWiki.subreddit,redditclient.RedditWiki.page)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditWiki.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
 
     
 

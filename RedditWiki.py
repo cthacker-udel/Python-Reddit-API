@@ -21,6 +21,8 @@ class RedditWiki(RedditClient):
         self.show = None
         self.sr_detail = None
         self.page = None
+        self.v = None
+        self.v2 = None
 
 
     def generate_queries(self):
@@ -57,6 +59,10 @@ class RedditWiki(RedditClient):
             body['show'] = self.show
         if self.sr_detail != None:
             body['sr_detail'] = self.sr_detail
+        if self.v != None:
+            body['v'] = self.v
+        if self.v2 != None:
+            body['v2'] = self.v2
         return body
 
     def clear_queries(self):
@@ -75,3 +81,5 @@ class RedditWiki(RedditClient):
         self.limit = None
         self.show = None
         self.sr_detail = None
+        self.v = None
+        self.v2 = None
