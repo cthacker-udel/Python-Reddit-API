@@ -3299,6 +3299,21 @@ def retrieve_list_of_revisions_of_wiki_page(redditclient):
 
     pprint(request)
 
+
+def update_permissions_and_visibility_wiki_page(redditclient):
+
+    url = base_url + '[/r/{}]/wiki/settings/{}'.format(redditclient.RedditWiki.subreddit,redditclient.RedditWiki.page)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditWiki.generate_queries()
+
+    request = requests.post(url,headers=headers,body=body)
+
+    pprint(request)
+
+
+
     
 
 
