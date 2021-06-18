@@ -3275,6 +3275,30 @@ def retrieve_list_subreddit_wiki_pages(redditclient):
 
     pprint(request)
 
+def retrieve_list_recently_changed_wiki_subreddit_pages(redditclient):
+
+    url = base_url + '[/r/{}]/wiki/revisions'.format(redditclient.RedditWiki.subreddit)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditWiki.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
+def retrieve_list_of_revisions_of_wiki_page(redditclient):
+
+    url = base_url + '[/r/{}]/wiki/revisions/{}'.format(redditclient.RedditWiki.subreddit,redditclient.RedditWiki.page)
+
+    headers = get_auth_header(redditclient)
+
+    body = redditclient.RedditWiki.generate_queries()
+
+    request = requests.get(url,headers=headers,params=body)
+
+    pprint(request)
+
     
 
 

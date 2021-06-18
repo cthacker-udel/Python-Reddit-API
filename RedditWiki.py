@@ -20,6 +20,7 @@ class RedditWiki(RedditClient):
         self.limit = None
         self.show = None
         self.sr_detail = None
+        self.page = None
 
 
     def generate_queries(self):
