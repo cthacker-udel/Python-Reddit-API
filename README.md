@@ -24,11 +24,11 @@ This project is the implementation of Reddit API using Python, combined with the
 - [Moderation API](https://www.reddit.com/dev/api#section_moderation)
 - [New Modmail API](https://www.reddit.com/dev/api#section_modmail)
 - [Multis API](https://www.reddit.com/dev/api#section_multis)
-- Search API
-- Subreddits API
-- Users API
-- Widgets API
-- Wiki API
+- [Search API](https://www.reddit.com/dev/api#section_search)
+- [Subreddits API](https://www.reddit.com/dev/api#section_subreddits)
+- [Users API](https://www.reddit.com/dev/api#section_users)
+- [Widgets API](https://www.reddit.com/dev/api#section_widgets)
+- [Wiki API](https://www.reddit.com/dev/api#section_wiki)
   
   
  
