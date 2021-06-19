@@ -19,11 +19,11 @@ This project is the implementation of Reddit API using Python, combined with the
 - [Links & Comments API](https://www.reddit.com/dev/api#section_links_and_comments)
 - [Listings API](https://www.reddit.com/dev/api#section_listings)
 - [Live Threads API](https://www.reddit.com/dev/api#section_live)
-- Private Messages API
-- Misc API
-- Moderation API
-- New Modmail API
-- Multis API
+- [Private Messages API](https://www.reddit.com/dev/api#section_messages)
+- [Misc API](https://www.reddit.com/dev/api#section_misc)
+- [Moderation API](https://www.reddit.com/dev/api#section_moderation)
+- [New Modmail API](https://www.reddit.com/dev/api#section_modmail)
+- [Multis API](https://www.reddit.com/dev/api#section_multis)
 - Search API
 - Subreddits API
 - Users API
