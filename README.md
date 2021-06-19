@@ -10,9 +10,9 @@ This project is the implementation of Reddit API using Python, combined with the
 
 #### Implementation:
 
-- Account API
-- Captcha API
-- Collections API
+- [Account API](https://www.reddit.com/dev/api#section_account)
+- [Captcha API](https://www.reddit.com/dev/api#section_captcha)
+- [Collections API](https://www.reddit.com/dev/api#section_collections)
 - Emoji API
 - Flair API
 - Reddit Gold API
